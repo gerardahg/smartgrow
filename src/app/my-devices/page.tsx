@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import React from "react";
 
@@ -9,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
 import Paper from "@mui/material/Paper";
 
-import SmartgrowComponent from "@/components/application-ui/SmartgrowComponent";
+import SmartgrowComponent from "@/components/application-ui/plant-component/SmartgrowComponent";
 
 const placeholders = [
   "Mi Planta",
@@ -54,11 +53,7 @@ const MyDevices = () => {
         }}
       >
         {placeholders.map((placeholder) => (
-          <Grid
-            size={{ xs: 2, sm: 4, md: 4 }}
-            sx={{ maxWidth: 300 }}
-            key={placeholder}
-          >
+          <Grid key={placeholder} sx={{ width: "100%", maxWidth: 300 }}>
             <Paper elevation={3}>
               <SmartgrowComponent name={placeholder} />
             </Paper>

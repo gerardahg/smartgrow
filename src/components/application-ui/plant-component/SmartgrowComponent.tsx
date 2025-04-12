@@ -5,8 +5,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import InfoIcon from "@mui/icons-material/Info";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import SettingsButton from "./SettingsButton";
 
 interface Props {
   name: string;
@@ -14,7 +13,14 @@ interface Props {
 
 const SmartgrowComponent = ({ name }: Props) => {
   return (
-    <Box sx={{ padding: 2, width: 300 }}>
+    <Box
+      sx={{
+        padding: 2,
+        width: "100%",
+        maxWidth: 300,
+        position: "relative",
+      }}
+    >
       <Box
         sx={{
           marginBottom: 2,
@@ -31,20 +37,7 @@ const SmartgrowComponent = ({ name }: Props) => {
           Status
         </Button>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          gap: 1,
-          justifyContent: "center",
-        }}
-      >
-        <Button variant="contained" size="small" startIcon={<EditIcon />}>
-          Edit
-        </Button>
-        <Button variant="contained" size="small" startIcon={<DeleteIcon />}>
-          Delete
-        </Button>
-      </Box>
+      <SettingsButton />
     </Box>
   );
 };

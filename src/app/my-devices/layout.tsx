@@ -16,18 +16,21 @@ interface Props {
 
 const layout = ({ children }: Props) => {
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar sx={{ gap: 0.5 }}>
-          <Link href="/my-devices" style={{ flexGrow: 1 }}>
-            <NavButtonComponent text="Home" icon={<HomeIcon />} />
-          </Link>
-          <NavButtonComponent text="My Account" icon={<AccountCircleIcon />} />
+    <>
+      <AppBar>
+        <Toolbar>
+          <Box sx={{ flexGrow: 1 }}>
+            <Link href="/my-devices">
+              <NavButtonComponent text="Home" icon={<HomeIcon />} />
+            </Link>
+          </Box>
+          <NavButtonComponent text="Account" icon={<AccountCircleIcon />} />
           <NavButtonComponent text="Settings" icon={<SettingsIcon />} />
         </Toolbar>
       </AppBar>
+      <Toolbar />
       <Box>{children}</Box>
-    </Box>
+    </>
   );
 };
 

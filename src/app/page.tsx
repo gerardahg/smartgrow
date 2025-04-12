@@ -1,5 +1,5 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  return <div>test</div>;
+  return <Link href="/my-devices">my-devices</Link>;
 }

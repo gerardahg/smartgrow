@@ -1,9 +1,11 @@
+import Link from "next/link";
 import React from "react";
 
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import AddIcon from "@mui/icons-material/Add";
 
 const placeholders = [
   "p1",
@@ -18,14 +20,22 @@ const placeholders = [
   "p10",
 ];
 
-const page = () => {
+const MyDevices = () => {
   return (
     <Box sx={{ padding: 4 }}>
       <Typography variant="h3">Welcome back user</Typography>
       <Typography variant="h4" sx={{ marginTop: 1, marginBottom: 2 }}>
         My devices
       </Typography>
-      <Button variant="contained">Add Device</Button>
+      <Link href="/my-devices/add-device">
+        <Button
+          variant="contained"
+          sx={{ textTransform: "none" }}
+          endIcon={<AddIcon />}
+        >
+          Add Device
+        </Button>
+      </Link>
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
@@ -46,4 +56,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default MyDevices;

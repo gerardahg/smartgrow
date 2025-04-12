@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React from "react";
 
@@ -6,9 +7,12 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import AddIcon from "@mui/icons-material/Add";
+import Paper from "@mui/material/Paper";
+
+import SmartgrowComponent from "@/components/application-ui/SmartgrowComponent";
 
 const placeholders = [
-  "p1",
+  "Mi Planta",
   "p2",
   "p3",
   "p4",
@@ -31,7 +35,7 @@ const MyDevices = () => {
         <Button
           variant="contained"
           sx={{ textTransform: "none" }}
-          endIcon={<AddIcon />}
+          startIcon={<AddIcon />}
         >
           Add Device
         </Button>
@@ -39,16 +43,25 @@ const MyDevices = () => {
       <Grid
         container
         spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 4, sm: 8, md: 12 }}
-        sx={{ marginTop: 4 }}
+        columns={{ xs: 1, sm: 2, md: 4 }}
+        sx={{
+          justifyContent: {
+            xs: "center",
+            md: "space-evenly",
+            lg: "space-between",
+          },
+          marginTop: 4,
+        }}
       >
         {placeholders.map((placeholder) => (
           <Grid
             size={{ xs: 2, sm: 4, md: 4 }}
-            sx={{ border: 1 }}
+            sx={{ maxWidth: 300 }}
             key={placeholder}
           >
-            placeholder
+            <Paper elevation={3}>
+              <SmartgrowComponent name={placeholder} />
+            </Paper>
           </Grid>
         ))}
       </Grid>

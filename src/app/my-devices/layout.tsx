@@ -16,7 +16,7 @@ interface Props {
 
 const layout = ({ children }: Props) => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar sx={{ gap: 0.5 }}>
           <Link href="/my-devices" style={{ flexGrow: 1 }}>

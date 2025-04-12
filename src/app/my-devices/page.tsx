@@ -18,7 +18,7 @@ const page = () => {
       <Button variant="contained">Add Device</Button>
       <Grid container spacing={2} sx={{ marginTop: 4 }}>
         {placeholders.map((placeholder) => (
-          <Grid size={4} sx={{ border: 1 }}>
+          <Grid size={4} sx={{ border: 1 }} key={placeholder}>
             placeholder
           </Grid>
         ))}

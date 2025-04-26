@@ -7,12 +7,13 @@ import Typography from "@mui/material/Typography";
 import EmailIcon from "@mui/icons-material/Email";
 import LockIcon from "@mui/icons-material/Lock";
 import Button from "@mui/material/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 import IconInput from "@/components/application-ui/forms/IconInputComponent";
 
 const mb = { marginBottom: 2 };
 
-export default function Home() {
+export default function Signup() {
   return (
     <>
       <Box
@@ -42,8 +43,11 @@ export default function Home() {
         <Card sx={{ width: { md: 400, xs: 300 }, p: 3 }}>
           <CardContent>
             <Typography variant="h4" sx={[mb, { textAlign: "center" }]}>
-              Login
+              Register
             </Typography>
+
+            <IconInput Icon={AccountCircleIcon} label={"Name"} type={"text"} />
+
             <IconInput
               Icon={EmailIcon}
               label={"Email"}
@@ -55,7 +59,7 @@ export default function Home() {
 
             <Link href="/my-devices">
               <Button variant="contained" fullWidth>
-                Sign in
+                Sign up
               </Button>
             </Link>
 
@@ -63,9 +67,9 @@ export default function Home() {
               variant="body2"
               sx={{ marginTop: 1, textAlign: "center" }}
             >
-              Don't have an account?{" "}
-              <Link href="/sign-up" style={{ color: "#03a9f4" }}>
-                Sign Up
+              Already have an account?{" "}
+              <Link href="/" style={{ color: "#03a9f4" }}>
+                Sign in
               </Link>
             </Typography>
           </CardContent>

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
 import Button from "@mui/material/Button";
@@ -8,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 interface Props {
   text: string;
   icon: React.ReactNode;
-  menuItems?: string[];
+  menuItems?: [string, string][];
 }
 
 const NavButtonComponent = ({ text, icon, menuItems }: Props) => {
@@ -27,9 +28,9 @@ const NavButtonComponent = ({ text, icon, menuItems }: Props) => {
       {menuItems && (
         <Menu open={open} onClose={() => setAnchor(null)} anchorEl={anchor}>
           {menuItems.map((item) => (
-            <MenuItem key={item} onClick={() => setAnchor(null)}>
-              {item}
-            </MenuItem>
+            <Link href={item[1]} key={item[0]}>
+              <MenuItem onClick={() => setAnchor(null)}>{item[0]}</MenuItem>
+            </Link>
           ))}
         </Menu>
       )}

@@ -27,12 +27,15 @@ const layout = ({ children }: Props) => {
           <NavButtonComponent
             text="Account"
             icon={<AccountCircleIcon />}
-            menuItems={["Log out"]}
+            menuItems={[["Log out", "/"]]}
           />
           <NavButtonComponent
             text="Settings"
             icon={<SettingsIcon />}
-            menuItems={["Language", "Theme"]}
+            menuItems={[
+              ["Language", ""],
+              ["theme", ""],
+            ]}
           />
         </Toolbar>
       </AppBar>

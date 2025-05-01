@@ -1,14 +1,14 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
-import Button from "@mui/material/Button";
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import EmailIcon from '@mui/icons-material/Email';
+import LockIcon from '@mui/icons-material/Lock';
+import Button from '@mui/material/Button';
 
-import IconInput from "@/components/application-ui/forms/IconInputComponent";
+import IconInput from '@/components/application-ui/forms/IconInputComponent';
 
 const mb = { marginBottom: 2 };
 
@@ -17,22 +17,22 @@ export default function Home() {
     <>
       <Box
         sx={{
-          minHeight: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          bgcolor: "#fafafa",
+          minHeight: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'column',
+          bgcolor: '#fafafa',
         }}
       >
         <Typography
           variant="h3"
           sx={{
             fontFamily: "Roboto, 'Segoe UI', Arial, sans-serif",
-            fontStyle: "italic",
-            fontWeight: "bold",
-            letterSpacing: "1px",
-            color: "#1e88e5",
+            fontStyle: 'italic',
+            fontWeight: 'bold',
+            letterSpacing: '1px',
+            color: '#1e88e5',
             marginBottom: mb.marginBottom,
           }}
         >
@@ -41,17 +41,17 @@ export default function Home() {
 
         <Card sx={{ width: { md: 400, xs: 300 }, p: 3 }}>
           <CardContent>
-            <Typography variant="h4" sx={[mb, { textAlign: "center" }]}>
+            <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
               Login
             </Typography>
             <IconInput
               Icon={EmailIcon}
-              label={"Email"}
-              type={"email"}
+              label={'Email'}
+              type={'email'}
               placeholder="example@gmail.com"
             />
 
-            <IconInput Icon={LockIcon} label={"Password"} type={"Password"} />
+            <IconInput Icon={LockIcon} label={'Password'} type={'Password'} />
 
             <Link href="/my-devices">
               <Button variant="contained" fullWidth>
@@ -61,10 +61,10 @@ export default function Home() {
 
             <Typography
               variant="body2"
-              sx={{ marginTop: 1, textAlign: "center" }}
+              sx={{ marginTop: 1, textAlign: 'center' }}
             >
-              Don't have an account?{" "}
-              <Link href="/sign-up" style={{ color: "#03a9f4" }}>
+              Don&#39;t have an account?{' '}
+              <Link href="/sign-up" style={{ color: '#03a9f4' }}>
                 Sign Up
               </Link>
             </Typography>

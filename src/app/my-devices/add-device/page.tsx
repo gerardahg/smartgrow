@@ -1,9 +1,62 @@
-import React from "react";
+import Link from 'next/link';
 
-import Box from "@mui/material/Box";
+import React from 'react';
+
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import YardOutlinedIcon from '@mui/icons-material/YardOutlined';
+import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+import IconInput from '@/components/application-ui/forms/IconInputComponent';
 
 const AddDevice = () => {
-  return <Box sx={{ padding: 4 }}>a</Box>;
+  return (
+    <Box sx={{ padding: 4 }}>
+      <Card
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          boxShadow: 'none',
+        }}
+      >
+        <CardContent>
+          <Typography
+            variant="h2"
+            sx={{ fontSize: { md: 48, sm: 24, xs: 24 }, marginBottom: 2 }}
+          >
+            Add a new Device
+          </Typography>
+          <IconInput
+            Icon={YardOutlinedIcon}
+            label={'Device Name'}
+            type={'text'}
+          />
+          <IconInput
+            Icon={KeyOutlinedIcon}
+            label={'Device ID'}
+            type={'number'}
+          />
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-evenly',
+              marginTop: 4,
+            }}
+          >
+            <Button variant="contained">Add Device</Button>
+            <Link href="/my-devices">
+              <Button>Go back</Button>
+            </Link>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
+  );
 };
 
 export default AddDevice;

@@ -34,7 +34,7 @@ const layout = ({ children }: Props) => {
             icon={<SettingsIcon />}
             menuItems={[
               ["Language", ""],
-              ["theme", ""],
+              ["Theme", ""],
             ]}
           />
         </Toolbar>

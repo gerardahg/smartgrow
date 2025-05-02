@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -21,7 +20,6 @@ model User {
   password  String
   devices   Device[]
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
 
 model Device {
@@ -31,7 +29,6 @@ model Device {
   deviceId  Int
   readings  Readings[]
   createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
 
   User User @relation(fields: [userId], references: [id])
 }
@@ -44,7 +41,6 @@ model Readings {
   light       Float
   rain        Boolean
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
   Device Device @relation(fields: [deviceId], references: [id])
 }

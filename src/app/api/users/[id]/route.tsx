@@ -23,9 +23,9 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   const body = await request.json();
-  const validationn = schema.safeParse(body);
-  if (!validationn.success) {
-    return NextResponse.json(validationn.error.errors, { status: 400 });
+  const validation = schema.safeParse(body);
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
   const existingUser = await prisma.user.findUnique({

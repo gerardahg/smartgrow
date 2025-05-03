@@ -26,7 +26,6 @@ model Device {
   id        Int        @id @default(autoincrement())
   name      String
   userId    Int
-  deviceId  Int
   readings  Readings[]
   createdAt DateTime   @default(now())
 

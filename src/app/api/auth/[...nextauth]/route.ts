@@ -1,8 +1,8 @@
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import { prisma } from '../../../../../prisma/client';
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -29,10 +29,20 @@ const handler = NextAuth({
       }
       return true;
     },
+    async jwt({ token, user }) {
+      if (user) {
+        const dbUser = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+        if (dbUser) {
+          token.id = dbUser.id;
+        }
+      }
+      return token;
+    },
   },
-  pages: {
-    signIn: '/',
-  },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

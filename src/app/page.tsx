@@ -24,7 +24,6 @@ export default function Home() {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          bgcolor: '#fafafa',
         }}
       >
         <Typography

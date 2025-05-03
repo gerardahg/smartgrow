@@ -15,7 +15,7 @@ const handleSignIn = async () => {
 const SignIn = () => {
   return (
     <Button
-      variant="contained"
+      variant="outlined"
       fullWidth
       onClick={handleSignIn}
       startIcon={<GoogleIcon />}

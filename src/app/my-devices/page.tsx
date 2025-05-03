@@ -1,6 +1,4 @@
-'use client';
 import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import React from 'react';
 
 import Box from '@mui/material/Box';
@@ -11,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Paper from '@mui/material/Paper';
 
 import SmartgrowComponent from '@/components/application-ui/plant-component/SmartgrowComponent';
+import WelcomeUser from '@/components/application-ui/general-text/WelcomeUserComponent';
 
 const placeholders = [
   'Mi Planta',
@@ -26,12 +25,9 @@ const placeholders = [
 ];
 
 const MyDevices = () => {
-  const { data: session } = useSession();
   return (
     <Box sx={{ padding: 4 }}>
-      <Typography variant="h3">
-        Welcome, {session?.user?.name || 'User'}
-      </Typography>
+      <WelcomeUser />
       <Typography variant="h4" sx={{ marginTop: 1, marginBottom: 2 }}>
         My devices
       </Typography>

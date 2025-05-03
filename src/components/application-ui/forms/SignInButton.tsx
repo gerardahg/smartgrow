@@ -7,7 +7,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import Typography from '@mui/material/Typography';
 
 const handleSignIn = async () => {
-  const result = await signIn('google', {
+  await signIn('google', {
     callbackUrl: '/my-devices',
   });
 };

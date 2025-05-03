@@ -7,8 +7,10 @@ import Typography from '@mui/material/Typography';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
+import SignIn from '@/components/application-ui/forms/SignInButton';
 
 const mb = { marginBottom: 2 };
 
@@ -68,6 +70,10 @@ export default function Home() {
                 Sign Up
               </Link>
             </Typography>
+
+            <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+
+            <SignIn />
           </CardContent>
         </Card>
       </Box>

@@ -16,6 +16,10 @@ export async function GET(request: NextRequest) {
     where: {
       userId: userId,
     },
+    select: {
+      id: true,
+      name: true,
+    },
   });
   return NextResponse.json(devices);
 }

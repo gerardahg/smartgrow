@@ -4,27 +4,12 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import AddIcon from '@mui/icons-material/Add';
-import Paper from '@mui/material/Paper';
 
-import SmartgrowComponent from '@/components/application-ui/plant-component/SmartgrowComponent';
 import WelcomeUser from '@/components/application-ui/general-text/WelcomeUserComponent';
+import DevicesProvider from '@/components/application-ui/plant-component/DevicesGrid';
 
-const placeholders = [
-  'Mi Planta',
-  'p2',
-  'p3',
-  'p4',
-  'p5',
-  'p6',
-  'p7',
-  'p8',
-  'p9',
-  'p10',
-];
-
-const MyDevices = () => {
+const MyDevices = async () => {
   return (
     <Box sx={{ padding: 4 }}>
       <WelcomeUser />
@@ -40,27 +25,9 @@ const MyDevices = () => {
           Add Device
         </Button>
       </Link>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        columns={{ xs: 1, sm: 2, md: 4 }}
-        sx={{
-          justifyContent: {
-            xs: 'center',
-            md: 'space-evenly',
-            lg: 'space-between',
-          },
-          marginTop: 4,
-        }}
-      >
-        {placeholders.map((placeholder) => (
-          <Grid key={placeholder} sx={{ width: '100%', maxWidth: 300 }}>
-            <Paper elevation={3}>
-              <SmartgrowComponent name={placeholder} />
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+      <Box sx={{ marginTop: 4 }}>
+        <DevicesProvider />
+      </Box>
     </Box>
   );
 };

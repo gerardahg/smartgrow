@@ -14,16 +14,11 @@ import { Device } from '@/types/device';
 export default function DevicesProvider() {
   const { devices, isLoading, error, refetch } = useDevices();
 
-  // This callback will be passed to each SmartgrowComponent to handle device deletion
-  const handleDeviceDelete = useCallback(
-    (deviceId: number) => {
-      // Refetch the devices list after a successful deletion
-      setTimeout(() => {
-        refetch();
-      }, 1500); // Small delay to ensure the API has processed the deletion
-    },
-    [refetch]
-  );
+  const handleDeviceDelete = useCallback(() => {
+    setTimeout(() => {
+      refetch();
+    }, 1500);
+  }, [refetch]);
 
   if (isLoading) {
     return (
@@ -72,7 +67,7 @@ export default function DevicesProvider() {
             <SmartgrowComponent
               name={device.name}
               id={device.id}
-              onDeviceDelete={() => handleDeviceDelete(device.id)}
+              onDeviceDelete={() => handleDeviceDelete()}
             />
           </Paper>
         </Grid>

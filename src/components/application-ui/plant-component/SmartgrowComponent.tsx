@@ -46,7 +46,6 @@ const SmartgrowComponent = ({ name, id, onDeviceDelete }: Props) => {
       severity: 'success',
     });
 
-    // Use setTimeout to allow the notification to be seen before removing the component
     setTimeout(() => {
       if (onDeviceDelete) {
         onDeviceDelete();

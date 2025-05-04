@@ -33,7 +33,6 @@ const SettingsButton = ({
   const [newName, setNewName] = useState(name);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [debugInfo, setDebugInfo] = useState<any>(null);
 
   const open = Boolean(anchor);
 
@@ -45,9 +44,8 @@ const SettingsButton = ({
     setAnchor(null);
   };
 
-  // Edit functions
   const openEditDialog = () => {
-    setNewName(name); // Reset to current name
+    setNewName(name);
     setIsEditDialogOpen(true);
     handleClose();
   };
@@ -55,7 +53,6 @@ const SettingsButton = ({
   const closeEditDialog = () => {
     setIsEditDialogOpen(false);
     setError(null);
-    setDebugInfo(null);
   };
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,23 +67,16 @@ const SettingsButton = ({
 
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/devices/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/devices/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ name: newName }),
-        credentials: 'include', // Important for sending cookies/session
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        // Save debug info
-        setDebugInfo(data);
-        throw new Error(
-          data.error || `Error updating device: ${response.statusText}`
-        );
+        throw new Error(`Error updating device: ${response.statusText}`);
       }
 
       onNameUpdate(newName);
@@ -109,25 +99,17 @@ const SettingsButton = ({
   const closeDeleteDialog = () => {
     setIsDeleteDialogOpen(false);
     setError(null);
-    setDebugInfo(null);
   };
 
   const handleDelete = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/devices/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/devices/${id}`, {
         method: 'DELETE',
-        credentials: 'include', // Important for sending cookies/session
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        // Save debug info
-        setDebugInfo(data);
-        throw new Error(
-          data.error || `Error deleting device: ${response.statusText}`
-        );
+        throw new Error(`Error deleting device: ${response.statusText}`);
       }
 
       onDeviceDelete();
@@ -156,7 +138,6 @@ const SettingsButton = ({
         <MenuItem onClick={openDeleteDialog}>Delete</MenuItem>
       </Menu>
 
-      {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onClose={closeEditDialog}>
         <DialogTitle>Edit Device</DialogTitle>
         <DialogContent>
@@ -172,18 +153,6 @@ const SettingsButton = ({
             helperText={error}
             disabled={isLoading}
           />
-
-          {/* Debug info display */}
-          {debugInfo && (
-            <DialogContentText
-              sx={{ mt: 2, p: 2, bgcolor: 'grey.100', fontSize: '0.8rem' }}
-            >
-              <strong>Debug Info:</strong>
-              <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                {JSON.stringify(debugInfo, null, 2)}
-              </pre>
-            </DialogContentText>
-          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialog} disabled={isLoading}>
@@ -200,7 +169,6 @@ const SettingsButton = ({
         </DialogActions>
       </Dialog>
 
-      {/* Delete Dialog */}
       <Dialog open={isDeleteDialogOpen} onClose={closeDeleteDialog}>
         <DialogTitle>Delete Device</DialogTitle>
         <DialogContent>
@@ -208,22 +176,9 @@ const SettingsButton = ({
             Are you sure you want to delete {name}? This action cannot be
             undone.
           </DialogContentText>
-
           {error && (
             <DialogContentText color="error" sx={{ mt: 2 }}>
               {error}
-            </DialogContentText>
-          )}
-
-          {/* Debug info display */}
-          {debugInfo && (
-            <DialogContentText
-              sx={{ mt: 2, p: 2, bgcolor: 'grey.100', fontSize: '0.8rem' }}
-            >
-              <strong>Debug Info:</strong>
-              <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                {JSON.stringify(debugInfo, null, 2)}
-              </pre>
             </DialogContentText>
           )}
         </DialogContent>

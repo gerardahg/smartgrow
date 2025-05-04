@@ -3,6 +3,10 @@
 import { useState, useEffect } from 'react';
 import { Device } from '@/types/device';
 
+/**
+ * Custom hook to fetch devices data
+ * @returns {Object} The devices data and loading state
+ */
 export function useDevices() {
   const [devices, setDevices] = useState<Device[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -24,7 +28,7 @@ export function useDevices() {
         setError(
           err instanceof Error ? err : new Error('An unknown error occurred')
         );
-        console.log('Error fetching devices:', err);
+        console.error('Error fetching devices:', err);
       } finally {
         setIsLoading(false);
       }
@@ -33,10 +37,21 @@ export function useDevices() {
     fetchDevices();
   }, []);
 
+  // Function to manually refetch the devices
   const refetch = async () => {
-    setIsLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/devices');
+      // Don't set loading state for refetches to avoid UI flicker
+      const res = await fetch('http://localhost:3000/api/devices', {
+        // Add cache: 'no-store' to ensure fresh data
+        cache: 'no-store',
+        // Add a timestamp to bust cache
+        headers: {
+          pragma: 'no-cache',
+          'cache-control': 'no-cache',
+          'x-timestamp': Date.now().toString(),
+        },
+      });
+      console.log(await res.json());
 
       if (!res.ok) {
         throw new Error(`Failed to fetch devices: ${res.status}`);
@@ -44,12 +59,12 @@ export function useDevices() {
 
       const data: Device[] = await res.json();
       setDevices(data);
+      setError(null); // Clear any previous errors on successful refetch
     } catch (err) {
       setError(
         err instanceof Error ? err : new Error('An unknown error occurred')
       );
-    } finally {
-      setIsLoading(false);
+      console.error('Error refetching devices:', err);
     }
   };
 

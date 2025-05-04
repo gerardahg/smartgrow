@@ -10,12 +10,13 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const userId = (session.user as { id: number }).id;
+  //?: Por si el campo es nulo, !: Porque sabemos que si existe la sesión, existe el correo
+  const user = await prisma.user.findUnique({
+    where: { email: session.user?.email! },
+  });
 
   const devices = await prisma.device.findMany({
-    where: {
-      userId: userId,
-    },
+    where: { userId: user?.id },
     select: {
       id: true,
       name: true,

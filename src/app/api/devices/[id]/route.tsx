@@ -4,13 +4,17 @@ import { getServerSession } from 'next-auth';
 import { prisma } from '../../../../../prisma/client';
 import { authOptions } from '../../auth/[...nextauth]/route';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+interface Params {
+  params: {
+    id: string;
+  };
+}
+
+export async function GET(request: NextRequest, { params }: Params) {
+  const id = parseInt(params.id);
   const device = await prisma.device.findUnique({
     where: {
-      id: parseInt(params.id),
+      id: id,
     },
   });
 
@@ -20,14 +24,13 @@ export async function GET(
   return NextResponse.json(device);
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest, { params }: Params) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
+
+  const { id } = await params;
 
   const body = await request.json();
 
@@ -36,55 +39,59 @@ export async function PUT(
   }
 
   const existingDevice = await prisma.device.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
 
   if (!existingDevice) {
     return NextResponse.json({ error: 'Device not found' }, { status: 404 });
   }
 
-  const userId = (session.user as { id: number }).id;
+  const user = await prisma.user.findUnique({
+    where: { email: session.user?.email! },
+  });
 
-  if (existingDevice.userId != userId) {
+  if (existingDevice.userId != user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   const updatedDevice = await prisma.device.update({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
     data: {
       name: body.name,
-      userId: userId,
+      userId: user.id,
     },
   });
 
   return NextResponse.json(updatedDevice, { status: 200 });
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, { params }: Params) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
+  const { id } = await params;
+
   const existingDevice = await prisma.device.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
 
   if (!existingDevice) {
     return NextResponse.json({ error: 'Device not found' }, { status: 404 });
   }
 
-  const userId = (session.user as { id: number }).id;
+  //Si existe la sesión existe el correo, indicamos '!'
+  const user = await prisma.user.findUnique({
+    where: { email: session.user?.email! },
+  });
 
-  if (existingDevice.userId != userId) {
+  if (existingDevice.userId != user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   const deletedDevice = await prisma.device.delete({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
 
   return NextResponse.json(deletedDevice, { status: 200 });

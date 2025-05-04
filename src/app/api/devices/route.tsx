@@ -5,7 +5,18 @@ import { prisma } from '../../../../prisma/client';
 import { authOptions } from '../auth/[...nextauth]/route';
 
 export async function GET(request: NextRequest) {
-  const devices = await prisma.device.findMany();
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const userId = (session.user as { id: number }).id;
+
+  const devices = await prisma.device.findMany({
+    where: {
+      userId: userId,
+    },
+  });
   return NextResponse.json(devices);
 }
 

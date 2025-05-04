@@ -1,16 +1,16 @@
-import { NextResponse, NextRequest } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { NextRequest, NextResponse } from 'next/server';
 
 import { prisma } from '../../../../../prisma/client';
-import { authOptions } from '../../auth/[...nextauth]/route';
+import Params from '@/lib/types/apiParams';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, { params }: Params) {
+  void request;
+
+  const { id } = await params;
+
   const reading = await prisma.readings.findUnique({
     where: {
-      id: parseInt(params.id),
+      id: parseInt(id),
     },
   });
 

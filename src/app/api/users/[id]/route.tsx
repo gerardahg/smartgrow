@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { prisma } from '../../../../../prisma/client';
 import schema from '../schema';
+import Params from '@/lib/types/apiParams';
 
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function GET(request: NextRequest, { params }: Params) {
+  void request;
+
+  const { id } = await params;
+
   const user = await prisma.user.findUnique({
     where: {
-      id: parseInt(params.id),
+      id: parseInt(id),
     },
   });
 
@@ -18,18 +21,17 @@ export async function GET(
   return NextResponse.json(user);
 }
 
-export async function PUT(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function PUT(request: NextRequest, { params }: Params) {
   const body = await request.json();
   const validation = schema.safeParse(body);
   if (!validation.success) {
     return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
+  const { id } = await params;
+
   const existingUser = await prisma.user.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
 
   if (!existingUser) {
@@ -37,7 +39,7 @@ export async function PUT(
   }
 
   const updatedUser = await prisma.user.update({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
     data: {
       name: body.name,
       email: body.email,
@@ -48,12 +50,12 @@ export async function PUT(
   return NextResponse.json(updatedUser, { status: 200 });
 }
 
-export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, { params }: Params) {
+  void request;
+  const { id } = await params;
+
   const existingUser = await prisma.user.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: parseInt(id) },
   });
 
   if (!existingUser) {
@@ -62,7 +64,7 @@ export async function DELETE(
 
   const user = await prisma.user.delete({
     where: {
-      id: parseInt(params.id),
+      id: parseInt(id),
     },
   });
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Device } from '@/types/device';
+import { Device } from '@/lib/types/device';
 
 export function useDevices() {
   const [devices, setDevices] = useState<Device[] | null>(null);

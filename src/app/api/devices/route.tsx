@@ -2,17 +2,17 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '../../../../prisma/client';
-import { authOptions } from '../auth/[...nextauth]/route';
+import { authOptions } from '@/lib/authOptions';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session?.user?.email) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   //?: Por si el campo es nulo, !: Porque sabemos que si existe la sesión, existe el correo
   const user = await prisma.user.findUnique({
-    where: { email: session.user?.email! },
+    where: { email: session.user.email },
   });
 
   const devices = await prisma.device.findMany({

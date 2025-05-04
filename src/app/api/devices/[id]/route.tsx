@@ -2,19 +2,17 @@ import { NextResponse, NextRequest } from 'next/server';
 import { getServerSession } from 'next-auth';
 
 import { prisma } from '../../../../../prisma/client';
-import { authOptions } from '../../auth/[...nextauth]/route';
-
-interface Params {
-  params: {
-    id: string;
-  };
-}
+import { authOptions } from '@/lib/authOptions';
+import Params from '@/lib/types/apiParams';
 
 export async function GET(request: NextRequest, { params }: Params) {
-  const id = parseInt(params.id);
+  void request; //Es necesario ya que el primer parametro siempre es request, y si no lo usamos nextjs se queja
+
+  const { id } = await params;
+
   const device = await prisma.device.findUnique({
     where: {
-      id: id,
+      id: parseInt(id),
     },
   });
 
@@ -26,7 +24,7 @@ export async function GET(request: NextRequest, { params }: Params) {
 
 export async function PUT(request: NextRequest, { params }: Params) {
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session?.user?.email) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -47,7 +45,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 
   const user = await prisma.user.findUnique({
-    where: { email: session.user?.email! },
+    where: { email: session.user.email },
   });
 
   if (existingDevice.userId != user?.id) {
@@ -66,8 +64,10 @@ export async function PUT(request: NextRequest, { params }: Params) {
 }
 
 export async function DELETE(request: NextRequest, { params }: Params) {
+  void request;
+
   const session = await getServerSession(authOptions);
-  if (!session) {
+  if (!session?.user?.email) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -83,7 +83,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
 
   //Si existe la sesión existe el correo, indicamos '!'
   const user = await prisma.user.findUnique({
-    where: { email: session.user?.email! },
+    where: { email: session.user.email },
   });
 
   if (existingDevice.userId != user?.id) {

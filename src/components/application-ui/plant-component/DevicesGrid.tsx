@@ -9,7 +9,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import SmartgrowComponent from '@/components/application-ui/plant-component/SmartgrowComponent';
 import { useDevices } from '@/hooks/useDevices';
-import { Device } from '@/types/device';
+import { Device } from '@/lib/types/device';
 
 export default function DevicesProvider() {
   const { devices, isLoading, error, refetch } = useDevices();

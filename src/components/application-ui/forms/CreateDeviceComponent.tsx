@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 const CreateDeviceComponent = () => {
-  const { isLoading, error, create } = useCreateDevice();
+  const { isLoading, create } = useCreateDevice();
   const [message, setMessage] = useState('');
   const [severity, setSeverity] = useState<'success' | 'info' | 'error'>(
     'info'

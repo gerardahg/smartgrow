@@ -12,7 +12,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import CircularProgress from '@mui/material/CircularProgress';
 
 interface SettingsButtonProps {
   reference: string;

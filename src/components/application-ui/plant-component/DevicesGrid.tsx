@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import Grow from '@mui/material/Grow';
 
 import SmartgrowComponent from '@/components/application-ui/plant-component/SmartgrowComponent';
 import { useDevices } from '@/hooks/useDevices';
@@ -53,23 +54,26 @@ export default function DevicesGrid() {
       container
       spacing={{ xs: 2, md: 3 }}
       columns={{ xs: 1, sm: 2, md: 4 }}
-      sx={{
-        justifyContent: {
-          xs: 'center',
-          md: 'space-evenly',
-          lg: 'space-between',
-        },
-      }}
+      sx={{ justifyContent: { md: 'flex-start', sm: 'center', xs: 'center' } }}
     >
       {devices.map((device: Device) => (
         <Grid key={device.reference} sx={{ width: '100%', maxWidth: 300 }}>
-          <Paper elevation={3}>
-            <SmartgrowComponent
-              name={device.name}
-              reference={device.reference}
-              onDeviceDelete={() => handleDeviceDelete()}
-            />
-          </Paper>
+          <Grow in={true}>
+            <Paper
+              sx={{
+                boxShadow: 'none',
+                border: '1px solid',
+                borderColor: 'divider',
+                bgcolor: 'background.paper',
+              }}
+            >
+              <SmartgrowComponent
+                name={device.name}
+                reference={device.reference}
+                onDeviceDelete={() => handleDeviceDelete()}
+              />
+            </Paper>
+          </Grow>
         </Grid>
       ))}
     </Grid>

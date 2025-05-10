@@ -1,21 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { prisma } from '../../../../../prisma/client';
-import Params from '@/lib/types/apiParams';
 
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(
+  request: NextRequest,
+  context: {
+    params: Promise<{ id: string }>;
+  }
+) {
   void request;
 
-  const { id } = await params;
+  try {
+    const { id } = await context.params;
+    console.log(`id: ${id}`);
 
-  const reading = await prisma.readings.findUnique({
-    where: {
-      id: parseInt(id),
-    },
-  });
+    const readings = await prisma.readings.findMany({
+      where: {
+        reference: id,
+      },
+    });
 
-  if (!reading) {
-    return NextResponse.json({ error: 'Reading not found' }, { status: 404 });
+    if (!readings || readings.length === 0) {
+      return NextResponse.json(
+        { error: 'Readings not found' },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(readings, { status: 200 });
+  } catch (err) {
+    const error =
+      err instanceof Error ? err : new Error('An unexpected error occurred');
+    return NextResponse.json(
+      { error: `Failed to fetch readings: ${error.message}` },
+      { status: 500 }
+    );
   }
-  return NextResponse.json(reading, { status: 200 });
 }

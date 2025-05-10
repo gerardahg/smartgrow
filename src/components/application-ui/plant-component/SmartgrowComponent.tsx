@@ -9,8 +9,10 @@ import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import Popover from '@mui/material/Popover';
 
 import SettingsButton from './SettingsButton';
+import ReadingsComponent from './ReadingsComponent';
 
 interface Props {
   name: string;
@@ -19,6 +21,7 @@ interface Props {
 }
 
 const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
+  console.log(`SmartgrowComponent: ${reference}`);
   const [deviceName, setDeviceName] = useState(name);
   const [notification, setNotification] = useState<{
     open: boolean;
@@ -55,6 +58,11 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
     setNotification({ ...notification, open: false });
   };
 
+  //Popover
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
+
   return (
     <Box
       sx={{
@@ -76,10 +84,31 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
           {deviceName}
         </Typography>
         <Image src="/images/plant.png" width={128} height={128} alt="Plant" />
-        <Button variant="contained" size="small" startIcon={<InfoIcon />}>
+        <Button
+          variant="contained"
+          size="small"
+          startIcon={<InfoIcon />}
+          onClick={(e) => setAnchorEl(e.currentTarget)}
+        >
           Status
         </Button>
       </Box>
+      {open && (
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          onClick={() => setAnchorEl(null)}
+          key={reference}
+        >
+          <ReadingsComponent key={reference} reference={reference} />
+        </Popover>
+      )}
+
       <SettingsButton
         reference={reference}
         name={deviceName}

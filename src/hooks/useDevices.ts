@@ -6,7 +6,7 @@ import { Device } from '@/lib/types/device';
 
 export function useDevices() {
   const [devices, setDevices] = useState<Device[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {

@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+
 import { Device } from '@/lib/types/device';
 
 export function useDevices() {
   const [devices, setDevices] = useState<Device[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
@@ -24,7 +25,6 @@ export function useDevices() {
         setError(
           err instanceof Error ? err : new Error('An unknown error occurred')
         );
-        console.error('Error fetching devices:', err);
       } finally {
         setIsLoading(false);
       }
@@ -35,13 +35,9 @@ export function useDevices() {
 
   const refetch = async () => {
     try {
+      setIsLoading(true);
       const res = await fetch('http://localhost:3000/api/devices', {
         cache: 'no-store',
-        headers: {
-          pragma: 'no-cache',
-          'cache-control': 'no-cache',
-          'x-timestamp': Date.now().toString(),
-        },
       });
 
       if (!res.ok) {
@@ -55,7 +51,8 @@ export function useDevices() {
       setError(
         err instanceof Error ? err : new Error('An unknown error occurred')
       );
-      console.error('Error refetching devices:', err);
+    } finally {
+      setIsLoading(false);
     }
   };
 

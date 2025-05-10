@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 
 import WelcomeUser from '@/components/application-ui/general-text/WelcomeUserComponent';
-import DevicesProvider from '@/components/application-ui/plant-component/DevicesGrid';
+import Devices from '@/components/application-ui/plant-component/DevicesGrid';
 
 const MyDevices = async () => {
   return (
@@ -26,7 +26,7 @@ const MyDevices = async () => {
         </Button>
       </Link>
       <Box sx={{ marginTop: 4 }}>
-        <DevicesProvider />
+        <Devices />
       </Box>
     </Box>
   );

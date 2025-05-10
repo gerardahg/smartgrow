@@ -24,7 +24,6 @@ const IconInput = ({ Icon, label, type, placeholder, dispatchType }: Props) => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (dispatchType) dispatch({ type: dispatchType, payload: localText });
-      console.log('value: ' + localText + ', dispatchType: ' + dispatchType);
     }, 300);
 
     return () => clearTimeout(timeout);

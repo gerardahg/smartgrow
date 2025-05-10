@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
+import CreateDevice from '@/components/application-ui/forms/CreateDeviceComponent';
 
 const AddDevice = () => {
   return (
@@ -33,14 +34,14 @@ const AddDevice = () => {
           </Typography>
           <IconInput
             Icon={YardOutlinedIcon}
-            label={'Device Name'}
-            type={'text'}
+            label="Device Name"
+            type="text"
             dispatchType="device/setName"
           />
           <IconInput
             Icon={KeyOutlinedIcon}
-            label={'Device reference'}
-            type={'text'}
+            label="Device reference"
+            type="text"
             dispatchType="device/setReference"
           />
           <Box
@@ -50,7 +51,7 @@ const AddDevice = () => {
               marginTop: 4,
             }}
           >
-            <Button variant="contained">Add Device</Button>
+            <CreateDevice />
             <Link href="/my-devices">
               <Button>Go back</Button>
             </Link>

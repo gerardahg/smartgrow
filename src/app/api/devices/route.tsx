@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 
+import { z } from 'zod';
+
 import { prisma } from '../../../../prisma/client';
 import { authOptions } from '@/lib/authOptions';
 
@@ -25,6 +27,11 @@ export async function GET() {
   return NextResponse.json(devices);
 }
 
+const schema = z.object({
+  name: z.string(),
+  reference: z.string(),
+});
+
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
@@ -32,12 +39,10 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
+  const validation = schema.safeParse(body);
 
-  if (!body.name || !body.reference) {
-    return NextResponse.json(
-      { error: 'Name and reference are required' },
-      { status: 400 }
-    );
+  if (!validation.success) {
+    return NextResponse.json(validation.error.errors, { status: 400 });
   }
 
   const user = await prisma.user.findUnique({

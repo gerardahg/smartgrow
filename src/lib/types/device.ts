@@ -1,4 +1,4 @@
 export interface Device {
-  id: number;
+  reference: string;
   name: string;
 }

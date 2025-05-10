@@ -15,14 +15,14 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 
 interface SettingsButtonProps {
-  id: number;
+  reference: string;
   name: string;
   onNameUpdate: (newName: string) => void;
   onDeviceDelete: () => void;
 }
 
 const SettingsButton = ({
-  id,
+  reference,
   name,
   onNameUpdate,
   onDeviceDelete,
@@ -67,13 +67,16 @@ const SettingsButton = ({
 
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/devices/${id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name: newName }),
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/devices/${reference}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name: newName }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Error updating device: ${response.statusText}`);
@@ -90,7 +93,6 @@ const SettingsButton = ({
     }
   };
 
-  // Delete functions
   const openDeleteDialog = () => {
     setIsDeleteDialogOpen(true);
     handleClose();
@@ -104,9 +106,12 @@ const SettingsButton = ({
   const handleDelete = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/devices/${id}`, {
-        method: 'DELETE',
-      });
+      const response = await fetch(
+        `http://localhost:3000/api/devices/${reference}`,
+        {
+          method: 'DELETE',
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Error deleting device: ${response.statusText}`);
@@ -158,12 +163,7 @@ const SettingsButton = ({
           <Button onClick={closeEditDialog} disabled={isLoading}>
             Cancel
           </Button>
-          <Button
-            onClick={handleSaveEdit}
-            color="primary"
-            disabled={isLoading}
-            startIcon={isLoading ? <CircularProgress size={20} /> : null}
-          >
+          <Button onClick={handleSaveEdit} color="primary" loading={isLoading}>
             Save
           </Button>
         </DialogActions>
@@ -186,12 +186,7 @@ const SettingsButton = ({
           <Button onClick={closeDeleteDialog} disabled={isLoading}>
             Cancel
           </Button>
-          <Button
-            onClick={handleDelete}
-            color="error"
-            disabled={isLoading}
-            startIcon={isLoading ? <CircularProgress size={20} /> : null}
-          >
+          <Button onClick={handleDelete} color="error" loading={isLoading}>
             Delete
           </Button>
         </DialogActions>

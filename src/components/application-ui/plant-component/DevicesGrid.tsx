@@ -11,7 +11,7 @@ import SmartgrowComponent from '@/components/application-ui/plant-component/Smar
 import { useDevices } from '@/hooks/useDevices';
 import { Device } from '@/lib/types/device';
 
-export default function DevicesProvider() {
+export default function DevicesGrid() {
   const { devices, isLoading, error, refetch } = useDevices();
 
   const handleDeviceDelete = useCallback(() => {
@@ -62,11 +62,11 @@ export default function DevicesProvider() {
       }}
     >
       {devices.map((device: Device) => (
-        <Grid key={device.id} sx={{ width: '100%', maxWidth: 300 }}>
+        <Grid key={device.reference} sx={{ width: '100%', maxWidth: 300 }}>
           <Paper elevation={3}>
             <SmartgrowComponent
               name={device.name}
-              id={device.id}
+              reference={device.reference}
               onDeviceDelete={() => handleDeviceDelete()}
             />
           </Paper>

@@ -14,11 +14,11 @@ import SettingsButton from './SettingsButton';
 
 interface Props {
   name: string;
-  id: number;
+  reference: string;
   onDeviceDelete?: () => void;
 }
 
-const SmartgrowComponent = ({ name, id, onDeviceDelete }: Props) => {
+const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
   const [deviceName, setDeviceName] = useState(name);
   const [notification, setNotification] = useState<{
     open: boolean;
@@ -46,11 +46,9 @@ const SmartgrowComponent = ({ name, id, onDeviceDelete }: Props) => {
       severity: 'success',
     });
 
-    setTimeout(() => {
-      if (onDeviceDelete) {
-        onDeviceDelete();
-      }
-    }, 1500);
+    if (onDeviceDelete) {
+      onDeviceDelete();
+    }
   };
 
   const handleCloseNotification = () => {
@@ -83,7 +81,7 @@ const SmartgrowComponent = ({ name, id, onDeviceDelete }: Props) => {
         </Button>
       </Box>
       <SettingsButton
-        id={id}
+        reference={reference}
         name={deviceName}
         onNameUpdate={handleNameUpdate}
         onDeviceDelete={handleDeviceDelete}

@@ -35,11 +35,13 @@ const AddDevice = () => {
             Icon={YardOutlinedIcon}
             label={'Device Name'}
             type={'text'}
+            dispatchType="device/setName"
           />
           <IconInput
             Icon={KeyOutlinedIcon}
-            label={'Device ID'}
-            type={'number'}
+            label={'Device reference'}
+            type={'text'}
+            dispatchType="device/setReference"
           />
           <Box
             sx={{

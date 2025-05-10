@@ -12,7 +12,7 @@ export async function GET(request: NextRequest, { params }: Params) {
 
   const device = await prisma.device.findUnique({
     where: {
-      id: parseInt(id),
+      reference: id,
     },
   });
 
@@ -37,7 +37,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 
   const existingDevice = await prisma.device.findUnique({
-    where: { id: parseInt(id) },
+    where: { reference: id },
   });
 
   if (!existingDevice) {
@@ -53,7 +53,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 
   const updatedDevice = await prisma.device.update({
-    where: { id: parseInt(id) },
+    where: { reference: id },
     data: {
       name: body.name,
       userId: user.id,
@@ -74,7 +74,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
   const { id } = await params;
 
   const existingDevice = await prisma.device.findUnique({
-    where: { id: parseInt(id) },
+    where: { reference: id },
   });
 
   if (!existingDevice) {
@@ -91,7 +91,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
   }
 
   const deletedDevice = await prisma.device.delete({
-    where: { id: parseInt(id) },
+    where: { reference: id },
   });
 
   return NextResponse.json(deletedDevice, { status: 200 });

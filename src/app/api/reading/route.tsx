@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
 
   const newReading = await prisma.readings.create({
     data: {
-      deviceId: body.deviceId,
+      reference: body.reference,
       temperature: body.temperature,
       humidity: body.humidity,
       light: body.light,

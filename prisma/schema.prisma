@@ -23,7 +23,7 @@ model User {
 }
 
 model Device {
-  id        Int        @id @default(autoincrement())
+  reference String     @id
   name      String
   userId    Int
   readings  Readings[]
@@ -34,12 +34,12 @@ model Device {
 
 model Readings {
   id          Int      @id @default(autoincrement())
-  deviceId    Int
+  reference   String
   temperature Float
   humidity    Float
   light       Float
   rain        Boolean
   createdAt   DateTime @default(now())
 
-  Device Device @relation(fields: [deviceId], references: [id])
+  Device Device @relation(fields: [reference], references: [reference])
 }

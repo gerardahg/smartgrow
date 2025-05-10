@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const schema = z.object({
-  deviceId: z.number().positive(),
+  reference: z.string(),
   temperature: z.number(),
   humidity: z.number(),
   light: z.number(),

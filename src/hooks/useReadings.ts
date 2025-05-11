@@ -12,7 +12,7 @@ const useReadings = (reference: string) => {
     const fetchReading = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/reading/${reference}`,
+          `smartgrow.vercel.app/api/reading/${reference}`,
           { cache: 'no-store' }
         );
         if (!res.ok) {

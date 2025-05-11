@@ -19,9 +19,9 @@ export async function GET(
       },
     });
 
-    if (!readings || readings.length === 0) {
+    if (!readings) {
       return NextResponse.json(
-        { error: 'Readings not found' },
+        { message: 'No Readings found' },
         { status: 404 }
       );
     }
@@ -30,7 +30,7 @@ export async function GET(
     const error =
       err instanceof Error ? err : new Error('An unexpected error occurred');
     return NextResponse.json(
-      { error: `Failed to fetch readings: ${error.message}` },
+      { message: `Failed to fetch readings: ${error.message}` },
       { status: 500 }
     );
   }

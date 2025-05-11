@@ -16,7 +16,7 @@ const useReadings = (reference: string) => {
           { cache: 'no-store' }
         );
         if (!res.ok) {
-          throw new Error(`nexpected error fetching readings: ${res.status}`);
+          throw new Error(`unexpected error fetching readings: ${res.status}`);
         }
 
         const data: Reading[] = await res.json();

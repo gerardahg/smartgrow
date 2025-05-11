@@ -67,7 +67,7 @@ const SettingsButton = ({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `smartgrow.vercel.app/api/devices/${reference}`,
+        `https://smartgrow.vercel.app/api/devices/${reference}`,
         {
           method: 'PUT',
           headers: {
@@ -106,7 +106,7 @@ const SettingsButton = ({
     setIsLoading(true);
     try {
       const response = await fetch(
-        `smartgrow.vercel.app/api/devices/${reference}`,
+        `https://smartgrow.vercel.app/api/devices/${reference}`,
         {
           method: 'DELETE',
         }

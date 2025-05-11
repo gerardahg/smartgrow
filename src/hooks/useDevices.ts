@@ -13,7 +13,7 @@ export function useDevices() {
     const fetchDevices = async () => {
       try {
         setIsLoading(true);
-        const res = await fetch('smartgrow.vercel.app/api/devices');
+        const res = await fetch('https://smartgrow.vercel.app/api/devices');
 
         if (!res.ok) {
           throw new Error(`Failed to fetch devices: ${res.status}`);
@@ -36,7 +36,7 @@ export function useDevices() {
   const refetch = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch('smartgrow.vercel.app/api/devices', {
+      const res = await fetch('https://smartgrow.vercel.app/api/devices', {
         cache: 'no-store',
       });
 

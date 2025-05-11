@@ -41,5 +41,5 @@ model Readings {
   rain        Boolean
   createdAt   DateTime @default(now())
 
-  Device Device @relation(fields: [reference], references: [reference])
+  Device Device @relation(fields: [reference], references: [reference], onDelete: Cascade)
 }

@@ -12,7 +12,6 @@ export async function GET(
 
   try {
     const { id } = await context.params;
-    console.log(`id: ${id}`);
 
     const readings = await prisma.readings.findMany({
       where: {

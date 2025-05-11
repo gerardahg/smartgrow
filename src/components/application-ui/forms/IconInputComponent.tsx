@@ -27,7 +27,7 @@ const IconInput = ({ Icon, label, type, placeholder, dispatchType }: Props) => {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [localText]);
+  }, [localText, dispatch, dispatchType]);
 
   return (
     <Box

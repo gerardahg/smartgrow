@@ -12,7 +12,7 @@ export const useCreateDevice = () => {
   const create = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch('https://smartgrow.vercel.app/api/devices', {
+      const res = await fetch('/api/devices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

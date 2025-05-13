@@ -66,16 +66,13 @@ const SettingsButton = ({
 
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://smartgrow.vercel.app/api/devices/${reference}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ name: newName }),
-        }
-      );
+      const response = await fetch(`/api/devices/${reference}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: newName }),
+      });
 
       if (!response.ok) {
         throw new Error(`Error updating device: ${response.statusText}`);
@@ -105,12 +102,9 @@ const SettingsButton = ({
   const handleDelete = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://smartgrow.vercel.app/api/devices/${reference}`,
-        {
-          method: 'DELETE',
-        }
-      );
+      const response = await fetch(`/api/devices/${reference}`, {
+        method: 'DELETE',
+      });
 
       if (!response.ok) {
         throw new Error(`Error deleting device: ${response.statusText}`);

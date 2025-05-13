@@ -50,9 +50,15 @@ export default function Home() {
               label={'Email'}
               type={'email'}
               placeholder="example@gmail.com"
+              dispatchType="credential/setEmail"
             />
 
-            <IconInput Icon={LockIcon} label={'Password'} type={'Password'} />
+            <IconInput
+              Icon={LockIcon}
+              label={'Password'}
+              type={'Password'}
+              dispatchType="credential/setPassword"
+            />
 
             <Link href="/my-devices">
               <Button variant="contained" fullWidth>

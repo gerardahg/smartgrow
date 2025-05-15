@@ -1,34 +1,36 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { signIn } from 'next-auth/react';
 
-import bcrypt from 'bcrypt';
+import { z } from 'zod';
 
 import { RootState } from '@/store/store';
 
-export function useUsers() {
+const schema = z.object({ email: z.string().email() });
+
+export default function useUsers() {
   const { email, password, name } = useSelector(
     (state: RootState) => state.credential
   );
-  const [error, setError] = useState<String | null>(null);
-  const [response, setResponse] = useState(false);
-
-  const login = async () => {
-    try {
-      const data = await fetch(`/api/users/${email}`);
-      const user = await data.json();
-      const passwordVerified = await bcrypt.compare(password, user.password);
-
-      if (passwordVerified) setResponse(true);
-      else setError('Invalid credentials');
-    } catch (err) {
-      const error = err instanceof Error ? err : new Error('Unexpected error');
-      setError(error.message);
-    }
-  };
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const register = async () => {
+    if (!email || !password || !name) {
+      setError('Name, email or password missing');
+      return;
+    }
+
+    const isEmail = schema.safeParse({ email });
+    if (!isEmail.success) {
+      setError('Invalid email format');
+      return;
+    }
+
+    console.log('a');
     try {
-      const data = await fetch('api/users', {
+      setLoading(true);
+      const res = await fetch('api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,16 +42,22 @@ export function useUsers() {
         }),
       });
 
-      if (!data.ok) {
+      if (!res.ok) {
         throw new Error('Failed to register user');
       }
 
-      setResponse(true);
+      await signIn('credentials', {
+        email,
+        password,
+        callbackUrl: '/my-devices',
+      });
     } catch (err) {
       const error = err instanceof Error ? err : new Error('Unexpected error');
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { error, response, login, register };
+  return { error, register, loading };
 }

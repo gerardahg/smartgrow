@@ -6,10 +6,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
+import Register from '@/components/application-ui/forms/RegisterComponent';
 
 const mb = { marginBottom: 2 };
 
@@ -23,7 +23,6 @@ export default function Signup() {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'column',
-          bgcolor: '#fafafa',
         }}
       >
         <Typography
@@ -40,7 +39,15 @@ export default function Signup() {
           SmartGrow
         </Typography>
 
-        <Card sx={{ width: { md: 400, xs: 300 }, p: 3 }}>
+        <Card
+          sx={{
+            width: { md: 400, xs: 300 },
+            p: 3,
+            boxShadow: 'none',
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
           <CardContent>
             <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
               Register
@@ -68,11 +75,7 @@ export default function Signup() {
               dispatchType="credential/setPassword"
             />
 
-            <Link href="/my-devices">
-              <Button variant="contained" fullWidth>
-                Sign up
-              </Button>
-            </Link>
+            <Register />
 
             <Typography
               variant="body2"

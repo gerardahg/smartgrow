@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
+
 import deviceReducer from './slices/deviceSlice';
+import credentialReducer from './slices/credentialSlice';
 
 export const store = configureStore({
-  reducer: { device: deviceReducer },
+  reducer: { device: deviceReducer, credential: credentialReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import schema from './schema';
 
+import bcrypt from 'bcrypt';
+
+import schema from './schema';
 import { prisma } from '../../../../prisma/client';
 
 export async function GET() {
@@ -27,13 +29,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const user = await prisma.user.create({
+  const hashedPassword = await bcrypt.hash(body.password, 10);
+
+  await prisma.user.create({
     data: {
       name: body.name,
       email: body.email,
-      password: body.password,
+      password: hashedPassword,
     },
   });
 
-  return NextResponse.json(user, { status: 201 });
+  return NextResponse.json({ message: 'User created' }, { status: 201 });
 }

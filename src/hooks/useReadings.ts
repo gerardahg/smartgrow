@@ -11,10 +11,9 @@ const useReadings = (reference: string) => {
   useEffect(() => {
     const fetchReading = async () => {
       try {
-        const res = await fetch(
-          `https://smartgrow.vercel.app/api/reading/${reference}`,
-          { cache: 'no-store' }
-        );
+        const res = await fetch(`/api/reading/${reference}`, {
+          cache: 'no-store',
+        });
         if (!res.ok) {
           throw new Error(`unexpected error fetching readings: ${res.status}`);
         }

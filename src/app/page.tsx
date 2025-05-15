@@ -6,11 +6,11 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import SignIn from '@/components/application-ui/forms/SignInButton';
+import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
 
 const mb = { marginBottom: 2 };
 
@@ -40,7 +40,15 @@ export default function Home() {
           SmartGrow
         </Typography>
 
-        <Card sx={{ width: { md: 400, xs: 300 }, p: 3 }}>
+        <Card
+          sx={{
+            width: { md: 400, xs: 300 },
+            p: 3,
+            boxShadow: 'none',
+            border: '1px solid',
+            borderColor: 'divider',
+          }}
+        >
           <CardContent>
             <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
               Login
@@ -50,15 +58,17 @@ export default function Home() {
               label={'Email'}
               type={'email'}
               placeholder="example@gmail.com"
+              dispatchType="credential/setEmail"
             />
 
-            <IconInput Icon={LockIcon} label={'Password'} type={'Password'} />
+            <IconInput
+              Icon={LockIcon}
+              label={'Password'}
+              type={'Password'}
+              dispatchType="credential/setPassword"
+            />
 
-            <Link href="/my-devices">
-              <Button variant="contained" fullWidth>
-                Sign in
-              </Button>
-            </Link>
+            <ManualSignIn />
 
             <Typography
               variant="body2"

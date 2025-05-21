@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import Slider from '@mui/material/Slider';
 
 interface Props {
   reference: string;
@@ -21,7 +22,8 @@ const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
       boxShadow: 'none',
       border: '1px solid',
       borderColor: 'divider',
-      minWidth: 300,
+      minWidth: { xs: 250, sm: 300, md: 300 },
+      overflowY: 'auto',
     }}
   >
     <CardContent>{children}</CardContent>
@@ -29,8 +31,7 @@ const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 );
 
 const ReadingsComponent = ({ reference }: Props) => {
-  console.log(`ReadingsComponent: ${reference}`);
-  const { error, isLoading, readings } = useReadings(reference);
+  const { error, isLoading, reading } = useReadings(reference);
 
   if (isLoading) {
     return (
@@ -56,7 +57,7 @@ const ReadingsComponent = ({ reference }: Props) => {
     );
   }
 
-  if (!readings || readings.length == 0) {
+  if (!reading) {
     return (
       <Container>
         <Typography variant="body1" sx={{ textAlign: 'center', my: 4 }}>
@@ -66,21 +67,55 @@ const ReadingsComponent = ({ reference }: Props) => {
     );
   }
 
-  const reading = readings[readings.length - 1];
+  const raining = reading.rain ? 1 : 0;
+  const sliderSx = {
+    '& .MuiSlider-thumb': {
+      '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
+        boxShadow: 'inherit',
+      },
+    },
+  };
 
   return (
     <Container>
-      <Stack sx={{ textAlign: 'center' }} divider={<Divider />} spacing={2}>
-        <Typography variant="body1">Last Reading</Typography>
-
-        <Typography variant="body2">
-          temperature: {reading.temperature}
-        </Typography>
-        <Typography variant="body2">humidity: {reading.humidity}</Typography>
-        <Typography variant="body2">light: {reading.light}</Typography>
-        <Typography variant="body2">
-          rain: {reading.rain ? 'True' : 'False'}
-        </Typography>
+      <Stack divider={<Divider />} spacing={2} sx={{ pr: 1 }}>
+        <Box>
+          <Typography>temperature</Typography>
+          <Slider
+            value={reading.temperature}
+            size="small"
+            min={0}
+            max={40}
+            valueLabelDisplay="auto"
+            sx={sliderSx}
+          />
+        </Box>
+        <Box>
+          <Typography>humidity</Typography>
+          <Slider
+            size="small"
+            value={reading.humidity}
+            min={0}
+            max={1000}
+            valueLabelDisplay="auto"
+            sx={sliderSx}
+          />
+        </Box>
+        <Box>
+          <Typography>light</Typography>
+          <Slider
+            size="small"
+            value={reading.light}
+            min={0}
+            max={1000}
+            valueLabelDisplay="auto"
+            sx={sliderSx}
+          />
+        </Box>
+        <Box>
+          <Typography>rain:</Typography>
+          <Slider size="small" value={raining} min={0} max={1} sx={sliderSx} />
+        </Box>
       </Stack>
     </Container>
   );

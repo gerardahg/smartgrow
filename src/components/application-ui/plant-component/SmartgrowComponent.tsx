@@ -9,7 +9,10 @@ import Button from '@mui/material/Button';
 import InfoIcon from '@mui/icons-material/Info';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
-import Popover from '@mui/material/Popover';
+import Dialog from '@mui/material/Dialog';
+import CloseIcon from '@mui/icons-material/Close';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
 
 import SettingsButton from './SettingsButton';
 import ReadingsComponent from './ReadingsComponent';
@@ -21,7 +24,6 @@ interface Props {
 }
 
 const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
-  console.log(`SmartgrowComponent: ${reference}`);
   const [deviceName, setDeviceName] = useState(name);
   const [notification, setNotification] = useState<{
     open: boolean;
@@ -58,10 +60,8 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
     setNotification({ ...notification, open: false });
   };
 
-  //Popover
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  //Dialog
+  const [open, setOpen] = useState(false);
 
   return (
     <Box
@@ -88,25 +88,26 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
           variant="contained"
           size="small"
           startIcon={<InfoIcon />}
-          onClick={(e) => setAnchorEl(e.currentTarget)}
+          onClick={() => setOpen(true)}
         >
           Status
         </Button>
       </Box>
       {open && (
-        <Popover
-          id={id}
-          open={open}
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          onClick={() => setAnchorEl(null)}
-          key={reference}
-        >
+        <Dialog open={open} onClose={() => setOpen(false)} key={reference}>
+          <IconButton
+            onClick={() => setOpen(false)}
+            sx={{
+              position: 'absolute',
+              right: 8,
+              top: 8,
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+          <DialogTitle sx={{ p: 2 }}>{reference}</DialogTitle>
           <ReadingsComponent key={reference} reference={reference} />
-        </Popover>
+        </Dialog>
       )}
 
       <SettingsButton

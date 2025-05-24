@@ -20,7 +20,7 @@ const ThemeBorderComponent = () => {
     }, 300);
 
     return () => clearTimeout(timeout);
-  }, [slider]);
+  }, [slider, dispatch]);
 
   return (
     <Stack>

@@ -45,7 +45,9 @@ const theme5 = {
   },
 };
 
-export default { theme1, theme2, theme3, theme4, theme5 };
+const themes = { theme1, theme2, theme3, theme4, theme5 };
+
+export default themes;
 
 /*
 - Primary Colors:

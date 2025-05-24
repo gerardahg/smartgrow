@@ -33,9 +33,9 @@ export default function Home() {
             fontStyle: 'italic',
             fontWeight: 'bold',
             letterSpacing: '1px',
-            color: '#1e88e5',
-            marginBottom: mb.marginBottom,
+            color: 'primary.main',
           }}
+          gutterBottom
         >
           SmartGrow
         </Typography>

@@ -15,14 +15,14 @@ import ThemeBorder from './ThemeBorderComponent';
 const ThemeComponent = () => {
   return (
     <>
-      <Card sx={{ height: '100%' }}>
+      <Card sx={{ height: '100%', width: 300, borderRadius: 0 }}>
         <CardContent>
           <Stack divider={<Divider sx={{ mt: 2, mb: 2 }} />}>
-            <Stack direction="row" spacing={2} className="items-center">
+            <Stack direction="row" spacing={1} alignItems="center">
               <Avatar sx={{ backgroundColor: 'primary.main', color: 'white' }}>
                 <PaletteIcon />
               </Avatar>
-              <Typography variant="h6">Theme customization</Typography>
+              <Typography variant="h6">Customization</Typography>
             </Stack>
 
             <ThemeMode />

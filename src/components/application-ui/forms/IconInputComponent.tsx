@@ -38,7 +38,11 @@ const IconInput = ({ Icon, label, type, placeholder, dispatchType }: Props) => {
       }}
     >
       <Icon
-        sx={{ color: focused ? '#1769aa' : 'action.active', mr: 1, my: 0.5 }}
+        sx={{
+          color: focused ? 'primary.main' : 'action.active',
+          mr: 1,
+          my: 0.5,
+        }}
       />
       <TextField
         placeholder={placeholder}

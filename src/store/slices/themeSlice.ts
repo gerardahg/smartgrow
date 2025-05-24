@@ -9,7 +9,7 @@ interface Theme {
 const initialState: Theme = {
   mode: 'light',
   theme: 1,
-  border: 12,
+  border: 8,
 };
 
 const themeSlice = createSlice({

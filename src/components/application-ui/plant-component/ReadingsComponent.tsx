@@ -113,7 +113,7 @@ const ReadingsComponent = ({ reference }: Props) => {
           />
         </Box>
         <Box>
-          <Typography>rain:</Typography>
+          <Typography>rain</Typography>
           <Slider size="small" value={raining} min={0} max={1} sx={sliderSx} />
         </Box>
       </Stack>

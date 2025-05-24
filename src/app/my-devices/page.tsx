@@ -17,11 +17,7 @@ const MyDevices = async () => {
         My devices
       </Typography>
       <Link href="/my-devices/add-device">
-        <Button
-          variant="contained"
-          sx={{ textTransform: 'none' }}
-          startIcon={<AddIcon />}
-        >
+        <Button variant="contained" startIcon={<AddIcon />}>
           Add Device
         </Button>
       </Link>

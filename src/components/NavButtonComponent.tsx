@@ -3,17 +3,16 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
 
-import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import IconButton from '@mui/material/IconButton';
 
 interface Props {
-  text: string;
   icon: React.ReactNode;
   menuItems?: { display: string; href?: string }[];
 }
 
-const NavButtonComponent = ({ text, icon, menuItems }: Props) => {
+const NavButtonComponent = ({ icon, menuItems }: Props) => {
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const open = Boolean(anchor);
 
@@ -23,13 +22,12 @@ const NavButtonComponent = ({ text, icon, menuItems }: Props) => {
 
   return (
     <>
-      <Button
-        sx={{ color: 'white', textTransform: 'none' }}
-        startIcon={icon}
+      <IconButton
+        sx={{ color: 'white' }}
         onClick={(e) => setAnchor(e.currentTarget)}
       >
-        {text}
-      </Button>
+        {icon}
+      </IconButton>
       {menuItems && (
         <Menu open={open} onClose={() => setAnchor(null)} anchorEl={anchor}>
           {menuItems.map((item) => (

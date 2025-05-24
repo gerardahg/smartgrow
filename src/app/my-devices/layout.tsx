@@ -8,6 +8,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import HomeIcon from '@mui/icons-material/Home';
 
 import NavButtonComponent from '@/components/NavButtonComponent';
+import ThemeButton from '@/components/application-ui/ThemeComponent/ThemeButtonComponent';
 
 interface Props {
   children: ReactNode;
@@ -20,11 +21,11 @@ const layout = ({ children }: Props) => {
         <Toolbar>
           <Box sx={{ flexGrow: 1 }}>
             <Link href="/my-devices">
-              <NavButtonComponent text="Home" icon={<HomeIcon />} />
+              <NavButtonComponent icon={<HomeIcon />} />
             </Link>
           </Box>
+          <ThemeButton />
           <NavButtonComponent
-            text="Account"
             icon={<AccountCircleIcon />}
             menuItems={[{ display: 'Logout' }]}
           />

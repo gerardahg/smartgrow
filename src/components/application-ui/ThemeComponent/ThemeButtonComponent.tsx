@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import PaletteIcon from '@mui/icons-material/Palette';
 import Drawer from '@mui/material/Drawer';
+import CloseIcon from '@mui/icons-material/Close';
 
 import ThemeCustom from './ThemeComponent';
 
@@ -16,6 +17,12 @@ const ThemeButtonComponent = () => {
         <PaletteIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)} anchor="right">
+        <IconButton
+          sx={{ position: 'absolute', top: 17, right: 4 }}
+          onClick={() => setOpen(false)}
+        >
+          <CloseIcon />
+        </IconButton>
         <ThemeCustom />
       </Drawer>
     </>

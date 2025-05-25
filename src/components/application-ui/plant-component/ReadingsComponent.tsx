@@ -11,7 +11,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Slider from '@mui/material/Slider';
 import LinearProgress from '@mui/material/LinearProgress';
 
 import { Raining, Clear } from './rain-clear/WeatherComponent';
@@ -71,14 +70,6 @@ const ReadingsComponent = ({ reference }: Props) => {
       </Container>
     );
   }
-
-  const sliderSx = {
-    '& .MuiSlider-thumb': {
-      '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
-        boxShadow: 'inherit',
-      },
-    },
-  };
 
   const temperature = (reading.temperature / 40) * 100;
   const humidity = (reading.humidity / 1000) * 100;

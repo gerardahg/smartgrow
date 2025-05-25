@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+
+import { useTranslations } from 'next-intl';
 import SettingsIcon from '@mui/icons-material/Settings';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -121,6 +123,7 @@ const SettingsButton = ({
     }
   };
 
+  const t = useTranslations();
   return (
     <>
       <IconButton
@@ -132,17 +135,17 @@ const SettingsButton = ({
       </IconButton>
 
       <Menu open={open} onClose={handleClose} anchorEl={anchor}>
-        <MenuItem onClick={openEditDialog}>Edit</MenuItem>
-        <MenuItem onClick={openDeleteDialog}>Delete</MenuItem>
+        <MenuItem onClick={openEditDialog}>{t('edit')}</MenuItem>
+        <MenuItem onClick={openDeleteDialog}>{t('delete')}</MenuItem>
       </Menu>
 
       <Dialog open={isEditDialogOpen} onClose={closeEditDialog}>
-        <DialogTitle>Edit Device</DialogTitle>
+        <DialogTitle>{t('editDevice')}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
             margin="dense"
-            label="Device Name"
+            label={t('deviceName')}
             type="text"
             fullWidth
             value={newName}
@@ -154,20 +157,20 @@ const SettingsButton = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={closeEditDialog} disabled={isLoading}>
-            Cancel
+            {t('cancel')}
           </Button>
           <Button onClick={handleSaveEdit} color="primary" loading={isLoading}>
-            Save
+            {t('save')}
           </Button>
         </DialogActions>
       </Dialog>
 
       <Dialog open={isDeleteDialogOpen} onClose={closeDeleteDialog}>
-        <DialogTitle>Delete Device</DialogTitle>
+        <DialogTitle>{t('deleteDevice')}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete {name}? This action cannot be
-            undone.
+            {t('confirmDelete1')} {name}
+            {t('confirmDelete2')}
           </DialogContentText>
           {error && (
             <DialogContentText color="error" sx={{ mt: 2 }}>
@@ -177,10 +180,10 @@ const SettingsButton = ({
         </DialogContent>
         <DialogActions>
           <Button onClick={closeDeleteDialog} disabled={isLoading}>
-            Cancel
+            {t('cancel')}
           </Button>
           <Button onClick={handleDelete} color="error" loading={isLoading}>
-            Delete
+            {t('delete')}
           </Button>
         </DialogActions>
       </Dialog>

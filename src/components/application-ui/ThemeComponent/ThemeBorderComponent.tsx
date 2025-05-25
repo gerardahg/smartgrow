@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 
 import { RootState } from '@/store/store';
 import { setBorder } from '@/store/slices/themeSlice';
+import { useTranslations } from 'next-intl';
 
 const ThemeBorderComponent = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,10 @@ const ThemeBorderComponent = () => {
     return () => clearTimeout(timeout);
   }, [slider, dispatch]);
 
+  const t = useTranslations();
   return (
     <Stack>
-      <Typography variant="body1">Border Radius</Typography>
+      <Typography variant="body1">{t('borderRadius')}</Typography>
       <Stack direction="row" className="gap-5 mt-3 items-center">
         <Typography variant="body2">4px</Typography>
         <Slider

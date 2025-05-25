@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import Button from '@mui/material/Button';
 
@@ -36,10 +37,11 @@ const CreateDeviceComponent = () => {
     }
   };
 
+  const t = useTranslations();
   return (
     <>
       <Button loading={isLoading} variant="contained" onClick={handleClick}>
-        Add Device
+        {t('addDevice')}
       </Button>
       <Snackbar
         autoHideDuration={6000}

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -63,6 +64,7 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
   //Dialog
   const [open, setOpen] = useState(false);
 
+  const t = useTranslations();
   return (
     <Box
       sx={{
@@ -90,7 +92,7 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
           startIcon={<InfoIcon />}
           onClick={() => setOpen(true)}
         >
-          Status
+          {t('status')}
         </Button>
       </Box>
       {open && (

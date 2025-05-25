@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -9,12 +10,15 @@ import HomeIcon from '@mui/icons-material/Home';
 
 import NavButtonComponent from '@/components/NavButtonComponent';
 import ThemeButton from '@/components/application-ui/ThemeComponent/ThemeButtonComponent';
+import TranslateComponent from '@/components/application-ui/forms/TranslateComponent';
 
 interface Props {
   children: ReactNode;
 }
 
 const layout = ({ children }: Props) => {
+  const t = useTranslations();
+
   return (
     <>
       <AppBar>
@@ -24,10 +28,11 @@ const layout = ({ children }: Props) => {
               <NavButtonComponent icon={<HomeIcon />} />
             </Link>
           </Box>
+          <TranslateComponent />
           <ThemeButton />
           <NavButtonComponent
             icon={<AccountCircleIcon />}
-            menuItems={[{ display: 'Logout' }]}
+            menuItems={[{ display: t('logout') }]}
           />
         </Toolbar>
       </AppBar>

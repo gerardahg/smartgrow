@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -14,6 +15,7 @@ import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import CreateDevice from '@/components/application-ui/forms/CreateDeviceComponent';
 
 const AddDevice = () => {
+  const t = useTranslations();
   return (
     <Box sx={{ padding: 4 }}>
       <Card
@@ -30,17 +32,17 @@ const AddDevice = () => {
             variant="h2"
             sx={{ fontSize: { md: 48, sm: 24, xs: 24 }, marginBottom: 2 }}
           >
-            Add a new Device
+            {t('addNewDevice')}
           </Typography>
           <IconInput
             Icon={YardOutlinedIcon}
-            label="Device Name"
+            label={t('deviceName')}
             type="text"
             dispatchType="device/setName"
           />
           <IconInput
             Icon={KeyOutlinedIcon}
-            label="Device reference"
+            label={t('deviceReference')}
             type="text"
             dispatchType="device/setReference"
           />
@@ -53,7 +55,7 @@ const AddDevice = () => {
           >
             <CreateDevice />
             <Link href="/my-devices">
-              <Button>Go back</Button>
+              <Button>{t('goBack')}</Button>
             </Link>
           </Box>
         </CardContent>

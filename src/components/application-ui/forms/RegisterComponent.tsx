@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import Button from '@mui/material/Button';
 
@@ -10,6 +11,7 @@ import Alert from '@mui/material/Alert';
 const RegisterComponent = () => {
   const { error, register, loading } = useUsers();
 
+  const t = useTranslations();
   return (
     <>
       <Button
@@ -19,7 +21,7 @@ const RegisterComponent = () => {
         onClick={register}
         color={error ? 'error' : 'primary'}
       >
-        Sign up
+        {t('signUp')}
       </Button>
 
       {error && (

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import { useTranslations } from 'next-intl';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -11,10 +12,12 @@ import Divider from '@mui/material/Divider';
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import SignIn from '@/components/application-ui/forms/SignInButton';
 import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
+import TranslateComponent from '@/components/application-ui/forms/TranslateComponent';
 
 const mb = { marginBottom: 2 };
 
 export default function Home() {
+  const t = useTranslations();
   return (
     <>
       <Box
@@ -47,15 +50,19 @@ export default function Home() {
             boxShadow: 'none',
             border: '1px solid',
             borderColor: 'divider',
+            position: 'relative',
           }}
         >
           <CardContent>
+            <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+              <TranslateComponent />
+            </Box>
             <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
-              Login
+              {t('login')}
             </Typography>
             <IconInput
               Icon={EmailIcon}
-              label={'Email'}
+              label={t('email')}
               type={'email'}
               placeholder="example@gmail.com"
               dispatchType="credential/setEmail"
@@ -63,7 +70,7 @@ export default function Home() {
 
             <IconInput
               Icon={LockIcon}
-              label={'Password'}
+              label={t('password')}
               type={'Password'}
               dispatchType="credential/setPassword"
             />
@@ -74,9 +81,9 @@ export default function Home() {
               variant="body2"
               sx={{ marginTop: 1, textAlign: 'center' }}
             >
-              Don&#39;t have an account?{' '}
+              {t('noAccount')}{' '}
               <Link href="/sign-up" style={{ color: '#03a9f4' }}>
-                Sign Up
+                {t('signUp2')}
               </Link>
             </Typography>
 

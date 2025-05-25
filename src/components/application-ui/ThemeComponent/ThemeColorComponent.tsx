@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslations } from 'next-intl';
 
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -47,10 +48,12 @@ const ThemeColorComponent = () => {
       secondary: theme5.secondary.main,
     },
   ];
+
+  const t = useTranslations();
   return (
     <>
       <Typography variant="body1" className="!mb-3">
-        Preset Color
+        {t('presetColor')}
       </Typography>
       <RadioGroup
         value={theme}

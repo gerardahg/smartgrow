@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { signOut } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -20,6 +21,7 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
     signOut({ callbackUrl: '/' });
   };
 
+  const t = useTranslations();
   return (
     <>
       <IconButton
@@ -38,7 +40,8 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
                   if (item.display === 'Logout') handleLogout();
                 }}
               >
-                {item.display}
+                {item.display == 'logout' && t('logout')}
+                {item.display != 'logout' && item.display}
               </MenuItem>
             </Link>
           ))}

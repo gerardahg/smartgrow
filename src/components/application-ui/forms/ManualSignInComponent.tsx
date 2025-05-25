@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { signIn } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -58,6 +59,7 @@ const ManualSignInComponent = () => {
     }
   };
 
+  const t = useTranslations();
   return (
     <>
       <Button
@@ -67,7 +69,7 @@ const ManualSignInComponent = () => {
         color={error ? 'error' : 'primary'}
         loading={loading}
       >
-        Sign in
+        {t('signIn')}
       </Button>
       {error && (
         <Box sx={{ mt: 1 }}>

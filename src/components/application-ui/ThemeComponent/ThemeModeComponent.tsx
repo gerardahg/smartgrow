@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslations } from 'next-intl';
 
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,9 +19,10 @@ const ThemeModeComponent = () => {
   const dispatch = useDispatch();
   const mode = useSelector((state: RootState) => state.theme.mode);
 
+  const t = useTranslations();
   return (
     <Stack direction="row" className="justify-between items-center">
-      <Typography variant="body1">Theme Mode</Typography>
+      <Typography variant="body1">{t('themeMode')}</Typography>
       <RadioGroup
         row
         value={mode}

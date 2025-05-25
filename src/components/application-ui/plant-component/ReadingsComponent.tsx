@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -10,7 +11,9 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
-import Slider from '@mui/material/Slider';
+import LinearProgress from '@mui/material/LinearProgress';
+
+import { Raining, Clear } from './rain-clear/WeatherComponent';
 
 interface Props {
   reference: string;
@@ -32,6 +35,7 @@ const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const ReadingsComponent = ({ reference }: Props) => {
   const { error, isLoading, reading } = useReadings(reference);
+  const t = useTranslations();
 
   if (isLoading) {
     return (
@@ -67,55 +71,67 @@ const ReadingsComponent = ({ reference }: Props) => {
     );
   }
 
-  const raining = reading.rain ? 1 : 0;
-  const sliderSx = {
-    '& .MuiSlider-thumb': {
-      '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
-        boxShadow: 'inherit',
-      },
-    },
-  };
+  const temperature = (reading.temperature / 40) * 100;
+  const humidity = (reading.humidity / 1000) * 100;
+  const light = (reading.light / 1000) * 100;
 
   return (
     <Container>
       <Stack divider={<Divider />} spacing={2} sx={{ pr: 1 }}>
         <Box>
-          <Typography>temperature</Typography>
-          <Slider
-            value={reading.temperature}
-            size="small"
-            min={0}
-            max={40}
-            valueLabelDisplay="auto"
-            sx={sliderSx}
-          />
+          <Typography gutterBottom>
+            {t('temperature')}: {`${reading.temperature}°C`}
+          </Typography>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Typography variant="body2">0°C</Typography>
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress
+                sx={{ height: 10, borderRadius: 5 }}
+                value={temperature}
+                variant="determinate"
+              />
+            </Box>
+            <Typography variant="body2">40°C</Typography>
+          </Stack>
         </Box>
         <Box>
-          <Typography>humidity</Typography>
-          <Slider
-            size="small"
-            value={reading.humidity}
-            min={0}
-            max={1000}
-            valueLabelDisplay="auto"
-            sx={sliderSx}
-          />
+          <Typography gutterBottom>{t('humidity')}</Typography>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Typography variant="body2">{t('low')}</Typography>
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress
+                sx={{ height: 10, borderRadius: 5 }}
+                value={humidity}
+                variant="determinate"
+              />
+            </Box>
+            <Typography variant="body2">{t('high')}</Typography>
+          </Stack>
         </Box>
         <Box>
-          <Typography>light</Typography>
-          <Slider
-            size="small"
-            value={reading.light}
-            min={0}
-            max={1000}
-            valueLabelDisplay="auto"
-            sx={sliderSx}
-          />
+          <Typography gutterBottom>{t('light')}</Typography>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Typography variant="body2">{t('low')}</Typography>
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress
+                sx={{ height: 10, borderRadius: 5 }}
+                value={light}
+                variant="determinate"
+              />
+            </Box>
+            <Typography variant="body2">{t('high')}</Typography>
+          </Stack>
         </Box>
-        <Box>
-          <Typography>rain</Typography>
-          <Slider size="small" value={raining} min={0} max={1} sx={sliderSx} />
-        </Box>
+
+        <Stack
+          direction="row"
+          alignItems="center"
+          spacing={2}
+          justifyContent="center"
+        >
+          {reading.rain && <Raining />}
+          {!reading.rain && <Clear />}
+        </Stack>
       </Stack>
     </Container>
   );

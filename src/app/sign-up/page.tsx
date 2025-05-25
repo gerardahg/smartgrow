@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -10,10 +11,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import Register from '@/components/application-ui/forms/RegisterComponent';
+import TranslateComponent from '@/components/application-ui/forms/TranslateComponent';
 
 const mb = { marginBottom: 2 };
 
 export default function Signup() {
+  const t = useTranslations();
   return (
     <>
       <Box
@@ -32,9 +35,9 @@ export default function Signup() {
             fontStyle: 'italic',
             fontWeight: 'bold',
             letterSpacing: '1px',
-            color: '#1e88e5',
-            marginBottom: mb.marginBottom,
+            color: 'primary.main',
           }}
+          gutterBottom
         >
           SmartGrow
         </Typography>
@@ -46,23 +49,28 @@ export default function Signup() {
             boxShadow: 'none',
             border: '1px solid',
             borderColor: 'divider',
+            position: 'relative',
           }}
         >
           <CardContent>
+            <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
+              <TranslateComponent />
+            </Box>
+
             <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
-              Register
+              {t('register')}
             </Typography>
 
             <IconInput
               Icon={AccountCircleIcon}
-              label={'Name'}
+              label={t('name')}
               type={'text'}
               dispatchType="credential/setName"
             />
 
             <IconInput
               Icon={EmailIcon}
-              label={'Email'}
+              label={t('email')}
               type={'email'}
               placeholder="example@gmail.com"
               dispatchType="credential/setEmail"
@@ -70,7 +78,7 @@ export default function Signup() {
 
             <IconInput
               Icon={LockIcon}
-              label={'Password'}
+              label={t('password')}
               type={'Password'}
               dispatchType="credential/setPassword"
             />
@@ -81,9 +89,9 @@ export default function Signup() {
               variant="body2"
               sx={{ marginTop: 1, textAlign: 'center' }}
             >
-              Already have an account?{' '}
+              {t('account')}{' '}
               <Link href="/" style={{ color: '#03a9f4' }}>
-                Sign in
+                {t('signIn2')}
               </Link>
             </Typography>
           </CardContent>

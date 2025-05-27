@@ -45,7 +45,7 @@ export default function DevicesGrid() {
   const filteredDevices = useMemo(() => {
     if (!devices) return [];
 
-    let filtered = devices.filter((device: Device) => {
+    const filtered = devices.filter((device: Device) => {
       return (
         device.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         device.reference.toLowerCase().includes(searchTerm.toLowerCase())

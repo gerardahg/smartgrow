@@ -37,7 +37,7 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
               <MenuItem
                 onClick={() => {
                   setAnchor(null);
-                  if (item.display === 'Logout') handleLogout();
+                  if (item.display == 'logout') handleLogout();
                 }}
               >
                 {item.display == 'logout' && t('logout')}

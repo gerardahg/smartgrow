@@ -12,6 +12,10 @@ export const useCreateDevice = () => {
   const create = async () => {
     try {
       setIsLoading(true);
+      if (!name || !reference) {
+        throw new Error('A name and reference is required');
+      }
+
       const res = await fetch('/api/devices', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

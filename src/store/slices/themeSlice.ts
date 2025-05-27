@@ -7,7 +7,7 @@ interface Theme {
 }
 
 const initialState: Theme = {
-  mode: 'light',
+  mode: 'dark',
   theme: 1,
   border: 8,
 };

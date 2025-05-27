@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import Button from '@mui/material/Button';
-
-import { useCreateDevice } from '@/hooks/useCreateDevice';
+import AddIcon from '@mui/icons-material/Add';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+
+import { useCreateDevice } from '@/hooks/useCreateDevice';
 
 const CreateDeviceComponent = () => {
   const { isLoading, create } = useCreateDevice();
@@ -28,7 +29,7 @@ const CreateDeviceComponent = () => {
       if (error.message === 'Failed to create devices: 500') {
         setMessage('Device reference already used');
       } else {
-        setMessage('Unexpected error, please try again.');
+        setMessage(error.message);
       }
 
       setSeverity('error');
@@ -40,7 +41,12 @@ const CreateDeviceComponent = () => {
   const t = useTranslations();
   return (
     <>
-      <Button loading={isLoading} variant="contained" onClick={handleClick}>
+      <Button
+        loading={isLoading}
+        variant="contained"
+        onClick={handleClick}
+        startIcon={<AddIcon />}
+      >
         {t('addDevice')}
       </Button>
       <Snackbar

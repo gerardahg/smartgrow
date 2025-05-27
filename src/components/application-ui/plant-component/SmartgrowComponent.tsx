@@ -14,6 +14,7 @@ import Dialog from '@mui/material/Dialog';
 import CloseIcon from '@mui/icons-material/Close';
 import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
+import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
 
 import SettingsButton from './SettingsButton';
 import ReadingsComponent from './ReadingsComponent';
@@ -107,7 +108,12 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
           >
             <CloseIcon />
           </IconButton>
-          <DialogTitle sx={{ p: 2 }}>{reference}</DialogTitle>
+          <DialogTitle
+            sx={{ p: 2, gap: 1, display: 'flex', alignItems: 'center' }}
+          >
+            <KeyOutlinedIcon />
+            {reference}
+          </DialogTitle>
           <ReadingsComponent key={reference} reference={reference} />
         </Dialog>
       )}

@@ -19,7 +19,12 @@ const layout = ({ children }: Props) => {
   return (
     <>
       <AppBar>
-        <Toolbar>
+        <Toolbar
+          sx={{
+            pr: { lg: 25, md: 20, sm: 4, xs: 1 },
+            pl: { lg: 25, md: 20, sm: 4, xs: 1 },
+          }}
+        >
           <Box sx={{ flexGrow: 1 }}>
             <Link href="/my-devices">
               <NavButtonComponent icon={<HomeIcon />} />
@@ -34,7 +39,14 @@ const layout = ({ children }: Props) => {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <Box>{children}</Box>
+      <Box
+        sx={{
+          pl: { lg: 25, md: 20, sm: 4, xs: 1 },
+          pr: { lg: 25, md: 20, sm: 4, xs: 1 },
+        }}
+      >
+        {children}
+      </Box>
     </>
   );
 };

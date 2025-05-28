@@ -8,12 +8,19 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import ThemeCustom from './ThemeComponent';
 
-const ThemeButtonComponent = () => {
+interface Props {
+  color?: string;
+}
+
+const ThemeButtonComponent = ({ color }: Props) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <IconButton sx={{ color: 'white' }} onClick={() => setOpen(true)}>
+      <IconButton
+        sx={{ color: color ? color : 'white' }}
+        onClick={() => setOpen(true)}
+      >
         <PaletteIcon />
       </IconButton>
       <Drawer open={open} onClose={() => setOpen(false)} anchor="right">

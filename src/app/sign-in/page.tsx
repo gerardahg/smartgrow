@@ -1,20 +1,21 @@
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
 
+import { useTranslations } from 'next-intl';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import EmailIcon from '@mui/icons-material/Email';
 import LockIcon from '@mui/icons-material/Lock';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Divider from '@mui/material/Divider';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
-import Register from '@/components/application-ui/forms/RegisterComponent';
+import SignIn from '@/components/application-ui/forms/SignInButton';
+import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
 
 const mb = { marginBottom: 2 };
 
-export default function Signup() {
+export default function Home() {
   const t = useTranslations();
   return (
     <>
@@ -53,16 +54,8 @@ export default function Signup() {
         >
           <CardContent>
             <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
-              {t('register')}
+              {t('login')}
             </Typography>
-
-            <IconInput
-              Icon={AccountCircleIcon}
-              label={t('name')}
-              type={'text'}
-              dispatchType="credential/setName"
-            />
-
             <IconInput
               Icon={EmailIcon}
               label={t('email')}
@@ -78,17 +71,21 @@ export default function Signup() {
               dispatchType="credential/setPassword"
             />
 
-            <Register />
+            <ManualSignIn />
 
             <Typography
               variant="body2"
               sx={{ marginTop: 1, textAlign: 'center' }}
             >
-              {t('account')}{' '}
-              <Link href="/sign-in" style={{ color: '#03a9f4' }}>
-                {t('signIn2')}
+              {t('noAccount')}{' '}
+              <Link href="/sign-up" style={{ color: '#03a9f4' }}>
+                {t('signUp2')}
               </Link>
             </Typography>
+
+            <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+
+            <SignIn />
           </CardContent>
         </Card>
       </Box>

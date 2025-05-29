@@ -18,16 +18,13 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
   const open = Boolean(anchor);
 
   const handleLogout = () => {
-    signOut({ callbackUrl: '/' });
+    signOut({ callbackUrl: '/sign-in' });
   };
 
   const t = useTranslations();
   return (
     <>
-      <IconButton
-        sx={{ color: 'white' }}
-        onClick={(e) => setAnchor(e.currentTarget)}
-      >
+      <IconButton onClick={(e) => setAnchor(e.currentTarget)}>
         {icon}
       </IconButton>
       {menuItems && (

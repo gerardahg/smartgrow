@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
@@ -16,12 +17,18 @@ const CreateDeviceComponent = () => {
     'info'
   );
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleClick = async () => {
     try {
       await create();
       setMessage('Device successfully created');
       setSeverity('success');
+
+      //Timeout para que de tiempo a ver la notificación de success
+      setTimeout(() => {
+        router.push('/my-devices');
+      }, 1000);
     } catch (err) {
       const error =
         err instanceof Error ? err : new Error('An unknown error occurred');

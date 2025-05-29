@@ -37,13 +37,15 @@ const sensors = [
 const LiveDataComponent = () => {
   const [currentSensor, setCurrentSensor] = useState(0);
 
+  //Setinterval: ejecuta el código que contiene cada x segundos, en este caso 2 segundos
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSensor((prev) => (prev + 1) % sensors.length);
+      setCurrentSensor((prev) => (prev >= sensors.length - 1 ? 0 : prev + 1));
     }, 2000);
 
     return () => clearInterval(interval);
   }, []);
+
   return (
     <Paper elevation={1} sx={{ p: 4 }}>
       <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>

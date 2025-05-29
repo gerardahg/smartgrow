@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import { useTranslations } from 'next-intl';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -12,6 +11,7 @@ import Divider from '@mui/material/Divider';
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import SignIn from '@/components/application-ui/forms/SignInButton';
 import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
+import Container from '@mui/material/Container';
 
 const mb = { marginBottom: 2 };
 
@@ -19,9 +19,10 @@ export default function Home() {
   const t = useTranslations();
   return (
     <>
-      <Box
+      <Container
+        maxWidth="lg"
         sx={{
-          minHeight: '100vh',
+          minHeight: '100dvh',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -34,7 +35,6 @@ export default function Home() {
             sx={{
               fontStyle: 'italic',
               fontWeight: 'bold',
-              letterSpacing: '1px',
               color: 'primary.main',
             }}
             gutterBottom
@@ -45,8 +45,9 @@ export default function Home() {
 
         <Card
           sx={{
-            width: { md: 400, xs: 300 },
-            p: 3,
+            maxWidth: 450,
+            width: '100%',
+            p: { xs: 2, sm: 3 },
             boxShadow: 'none',
             border: '1px solid',
             borderColor: 'divider',
@@ -88,7 +89,7 @@ export default function Home() {
             <SignIn />
           </CardContent>
         </Card>
-      </Box>
+      </Container>
     </>
   );
 }

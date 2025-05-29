@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -11,6 +10,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import Register from '@/components/application-ui/forms/RegisterComponent';
+import Container from '@mui/material/Container';
 
 const mb = { marginBottom: 2 };
 
@@ -18,7 +18,8 @@ export default function Signup() {
   const t = useTranslations();
   return (
     <>
-      <Box
+      <Container
+        maxWidth="lg"
         sx={{
           minHeight: '100vh',
           display: 'flex',
@@ -33,7 +34,6 @@ export default function Signup() {
             sx={{
               fontStyle: 'italic',
               fontWeight: 'bold',
-              letterSpacing: '1px',
               color: 'primary.main',
             }}
             gutterBottom
@@ -44,8 +44,9 @@ export default function Signup() {
 
         <Card
           sx={{
-            width: { md: 400, xs: 300 },
-            p: 3,
+            maxWidth: 450,
+            width: '100%',
+            p: { xs: 2, sm: 3 },
             boxShadow: 'none',
             border: '1px solid',
             borderColor: 'divider',
@@ -91,7 +92,7 @@ export default function Signup() {
             </Typography>
           </CardContent>
         </Card>
-      </Box>
+      </Container>
     </>
   );
 }

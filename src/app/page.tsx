@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import {
   Toolbar,
   Typography,
@@ -7,7 +6,6 @@ import {
   Grid,
   Box,
   Paper,
-  Avatar,
   List,
   ListItem,
   ListItemIcon,
@@ -23,6 +21,7 @@ import ChipComponent from '@/components/application-ui/landing/ChipComponent';
 import AppBarComponent from '@/components/application-ui/landing/AppBarComponent';
 import FeatureComponent from '@/components/application-ui/landing/FeatureComponent';
 import GradientButtonComponent from '@/components/application-ui/landing/GradientButtonComponent';
+import SmartgrowLogoComponent from '@/components/SmartgrowLogoComponent';
 
 export default function SmartGrowLanding() {
   return (
@@ -33,30 +32,14 @@ export default function SmartGrowLanding() {
           <Toolbar>
             <Box sx={{ display: 'flex', flexGrow: 1 }}>
               <Link href={'/'}>
-                <Stack alignItems="center" direction="row" spacing={1}>
-                  <Image
-                    src={'/images/plant.png'}
-                    alt={'Smartgrow logo'}
-                    width={50}
-                    height={50}
-                  />
-                  <Typography
-                    variant="h5"
-                    fontWeight={600}
-                    sx={{ color: 'text.primary' }}
-                  >
-                    SmartGrow
-                  </Typography>
-                </Stack>
+                <SmartgrowLogoComponent />
               </Link>
             </Box>
 
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row">
               <TranslateComponent />
 
-              <Avatar>
-                <ThemeButtonComponent />
-              </Avatar>
+              <ThemeButtonComponent />
             </Stack>
           </Toolbar>
         </Container>
@@ -156,7 +139,7 @@ export default function SmartGrowLanding() {
 
       {/* Sección final */}
       <Paper sx={{ py: 8, mt: 8, borderRadius: 0 }}>
-        <Container maxWidth="md" sx={{ textAlign: 'center' }}>
+        <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
           <Typography variant="h3" sx={{ mb: 2, fontWeight: 600 }}>
             Ready to Start Monitoring?
           </Typography>

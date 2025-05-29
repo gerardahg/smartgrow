@@ -10,10 +10,13 @@ interface Props {
 const AppBarComponent = ({ children }: Props) => {
   return (
     <AppBar
-      position="fixed"
       sx={(t) => ({
-        bgcolor: t.palette.mode == 'light' ? 'white' : '',
+        background:
+          t.palette.mode == 'light'
+            ? `linear-gradient(45deg, ${t.palette.primary.main}, ${t.palette.secondary.main})`
+            : '',
         p: 1,
+        boxShadow: 'none',
       })}
     >
       {children}

@@ -36,9 +36,10 @@ export default function DevicesGrid() {
   const [showFilters, setShowFilters] = useState(false);
 
   const handleDeviceDelete = useCallback(() => {
+    //Timeout para que de opción a ver la notificación
     setTimeout(() => {
       refetch();
-    }, 1500);
+    }, 1000);
   }, [refetch]);
 
   // Logica de busqueda y filtro

@@ -12,6 +12,7 @@ import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import SignIn from '@/components/application-ui/forms/SignInButton';
 import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
 import Container from '@mui/material/Container';
+import RedirectAuthenticated from '@/components/application-ui/general-text/RedirectAuthenticated';
 
 const mb = { marginBottom: 2 };
 
@@ -19,6 +20,7 @@ export default function Home() {
   const t = useTranslations();
   return (
     <>
+      <RedirectAuthenticated />
       <Container
         maxWidth="lg"
         sx={{

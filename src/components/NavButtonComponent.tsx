@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -15,8 +14,6 @@ interface Props {
 const NavButtonComponent = ({ icon, menuItems }: Props) => {
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const open = Boolean(anchor);
-
-  const t = useTranslations();
   return (
     <>
       <IconButton onClick={(e) => setAnchor(e.currentTarget)}>

@@ -14,40 +14,9 @@ import Thermostat from '@mui/icons-material/Thermostat';
 import Opacity from '@mui/icons-material/Opacity';
 import WbSunny from '@mui/icons-material/WbSunny';
 
-const sensors = [
-  {
-    name: 'Temperature',
-    value: '24°C',
-    icon: <Thermostat />,
-    color: '#ff5722',
-  },
-  { name: 'Humidity', value: 'High', icon: <Opacity />, color: '#2196f3' },
-  {
-    name: 'Light Level',
-    value: 'Bright',
-    icon: <WbSunny />,
-    color: '#ffc107',
-  },
-  {
-    name: 'Rain Status',
-    value: 'Dry',
-    icon: <CloudQueue />,
-    color: '#9c27b0',
-  },
-];
-
 const LiveDataComponent = () => {
   const [currentSensor, setCurrentSensor] = useState(0);
   const t = useTranslations();
-
-  //Setinterval: ejecuta el código que contiene cada x segundos, en este caso 2 segundos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSensor((prev) => (prev >= sensors.length - 1 ? 0 : prev + 1));
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   //Sensors tiene que estar dentro del componente debido a que tenemos que traducir los textos con el hook useTranslations
   const sensors = [
@@ -76,6 +45,16 @@ const LiveDataComponent = () => {
       color: '#9c27b0',
     },
   ];
+
+  //Setinterval: ejecuta el código que contiene cada x segundos, en este caso 2 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSensor((prev) => (prev >= sensors.length - 1 ? 0 : prev + 1));
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [sensors.length]);
+
   return (
     <Paper elevation={1} sx={{ p: 4 }}>
       <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>

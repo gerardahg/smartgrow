@@ -7,10 +7,10 @@ import Typography from '@mui/material/Typography';
 
 const WelcomeUser = () => {
   const t = useTranslations();
-  const { data: session } = useSession();
+  const { data } = useSession();
   return (
-    <Typography variant="h3" gutterBottom>
-      {t('welcome')}, {session?.user?.name || 'User'}
+    <Typography sx={{ fontSize: { xs: 40, sm: 48 } }} gutterBottom>
+      {t('welcome')}, {data?.user?.name || 'User'}
     </Typography>
   );
 };

@@ -1,98 +1,161 @@
 import Link from 'next/link';
-
+import {
+  Toolbar,
+  Typography,
+  Container,
+  Grid,
+  Box,
+  Paper,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Stack,
+} from '@mui/material';
+import { CheckCircle, ArrowForward } from '@mui/icons-material';
 import { useTranslations } from 'next-intl';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
-import Divider from '@mui/material/Divider';
 
-import IconInput from '@/components/application-ui/forms/IconInputComponent';
-import SignIn from '@/components/application-ui/forms/SignInButton';
-import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
 import TranslateComponent from '@/components/application-ui/forms/TranslateComponent';
+import ThemeButtonComponent from '@/components/application-ui/ThemeComponent/ThemeButtonComponent';
+import LiveDataComponent from '@/components/application-ui/landing/LiveDataComponent';
+import ChipComponent from '@/components/application-ui/landing/ChipComponent';
+import AppBarComponent from '@/components/application-ui/landing/AppBarComponent';
+import FeatureComponent from '@/components/application-ui/landing/FeatureComponent';
+import GradientButtonComponent from '@/components/application-ui/landing/GradientButtonComponent';
+import SmartgrowLogoComponent from '@/components/SmartgrowLogoComponent';
 
-const mb = { marginBottom: 2 };
-
-export default function Home() {
+export default function SmartGrowLanding() {
   const t = useTranslations();
   return (
-    <>
-      <Box
+    <Box>
+      {/* Barra de herramientas principal */}
+      <AppBarComponent>
+        <Container maxWidth="lg" disableGutters>
+          <Toolbar>
+            <Box sx={{ display: 'flex', flexGrow: 1 }}>
+              <Link href={'/'}>
+                <SmartgrowLogoComponent />
+              </Link>
+            </Box>
+
+            <Stack direction="row">
+              <ThemeButtonComponent />
+
+              <TranslateComponent />
+            </Stack>
+          </Toolbar>
+        </Container>
+      </AppBarComponent>
+
+      {/* Primera sección */}
+      <Container
+        maxWidth="lg"
         sx={{
-          minHeight: '100vh',
+          minHeight: '100dvh',
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'column',
+          mt: { xs: 12, md: 0 },
         }}
       >
-        <Typography
-          variant="h3"
-          sx={{
-            fontFamily: "Roboto, 'Segoe UI', Arial, sans-serif",
-            fontStyle: 'italic',
-            fontWeight: 'bold',
-            letterSpacing: '1px',
-            color: 'primary.main',
-          }}
-          gutterBottom
-        >
-          SmartGrow
-        </Typography>
-
-        <Card
-          sx={{
-            width: { md: 400, xs: 300 },
-            p: 3,
-            boxShadow: 'none',
-            border: '1px solid',
-            borderColor: 'divider',
-            position: 'relative',
-          }}
-        >
-          <CardContent>
-            <Box sx={{ position: 'absolute', top: 8, right: 8 }}>
-              <TranslateComponent />
-            </Box>
-            <Typography variant="h4" sx={[mb, { textAlign: 'center' }]}>
-              {t('login')}
-            </Typography>
-            <IconInput
-              Icon={EmailIcon}
-              label={t('email')}
-              type={'email'}
-              placeholder="example@gmail.com"
-              dispatchType="credential/setEmail"
-            />
-
-            <IconInput
-              Icon={LockIcon}
-              label={t('password')}
-              type={'Password'}
-              dispatchType="credential/setPassword"
-            />
-
-            <ManualSignIn />
-
+        <Grid container spacing={6} alignItems="center">
+          <Grid size={{ xs: 12, md: 6 }}>
+            <ChipComponent />
             <Typography
-              variant="body2"
-              sx={{ marginTop: 1, textAlign: 'center' }}
+              gutterBottom
+              fontWeight={600}
+              sx={{ fontSize: { xs: 32, md: 48 } }}
             >
-              {t('noAccount')}{' '}
-              <Link href="/sign-up" style={{ color: '#03a9f4' }}>
-                {t('signUp2')}
-              </Link>
+              {t('Intelligent Environmental Monitoring')}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{ mb: 4, color: 'text.secondary', lineHeight: 1.5 }}
+            >
+              {t(
+                'SmartGrow uses advanced sensor technology to monitor rain, humidity, temperature, and light levels in real-time Receive instant audio alerts and explore trends over time with our intuitive, user-friendly dashboard'
+              )}
+            </Typography>
+            <Link href="/sign-in">
+              <GradientButtonComponent
+                text={t('Get Started')}
+                icon={<ArrowForward />}
+              />
+            </Link>
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <LiveDataComponent />
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Sección de 'features' */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography variant="h3" gutterBottom fontWeight={600}>
+            {t('Powerful Features')}
+          </Typography>
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
+            {t('Everything you need to monitor and analyze your environment')}
+          </Typography>
+        </Box>
+
+        <FeatureComponent />
+      </Container>
+
+      {/* Sección de arduino */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Grid container spacing={6} alignItems="center" justifyContent="center">
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Typography variant="h3" sx={{ mb: 3, fontWeight: 600 }}>
+              {t('Technical Excellence')}
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{ mb: 4, color: 'text.secondary', lineHeight: 1.5 }}
+            >
+              {t(
+                "SmartGrow uses high-quality sensors and thoughtful design to give you accurate, real-time information about your environment It's easy to use and helps you stay on top of changing conditions, whether you're indoors or outdoors"
+              )}
             </Typography>
 
-            <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
+            <List>
+              {[
+                t('Reliable environmental sensors'),
+                t('Instant audio alerts'),
+                t('Automatic data tracking'),
+                t('Easy-to-use online dashboard'),
+              ].map((spec, index) => (
+                <ListItem key={index}>
+                  <ListItemIcon>
+                    <CheckCircle sx={{ color: 'primary.main' }} />
+                  </ListItemIcon>
+                  <ListItemText primary={spec} />
+                </ListItem>
+              ))}
+            </List>
+          </Grid>
+        </Grid>
+      </Container>
 
-            <SignIn />
-          </CardContent>
-        </Card>
-      </Box>
-    </>
+      {/* Sección final */}
+      <Paper sx={{ py: 8, mt: 8, borderRadius: 0 }}>
+        <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
+            {t('Ready to Start Monitoring?')}
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 4, color: 'text.secondary' }}>
+            {t(
+              'Join the SmartGrow ecosystem and take control of your environment'
+            )}
+          </Typography>
+          <Link href="/sign-in">
+            <GradientButtonComponent
+              text={t('Get Started')}
+              icon={<ArrowForward />}
+            />
+          </Link>
+        </Container>
+      </Paper>
+    </Box>
   );
 }

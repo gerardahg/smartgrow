@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grow from '@mui/material/Grow';
 import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -36,9 +35,10 @@ export default function DevicesGrid() {
   const [showFilters, setShowFilters] = useState(false);
 
   const handleDeviceDelete = useCallback(() => {
+    //Timeout para que de opción a ver la notificación
     setTimeout(() => {
       refetch();
-    }, 1500);
+    }, 1000);
   }, [refetch]);
 
   // Logica de busqueda y filtro
@@ -119,10 +119,8 @@ export default function DevicesGrid() {
             alignItems: 'center',
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {t('myDevices')}
-            </Typography>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography variant="h6">{t('myDevices')}</Typography>
             <Chip
               label={`${filteredDevices.length} ${t('of')} ${
                 devices.length
@@ -170,13 +168,6 @@ export default function DevicesGrid() {
               onChange={(e) => setSearchTerm(e.target.value)}
               size="small"
               fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
             />
 
             <FormControl size="small" sx={{ minWidth: 150 }}>

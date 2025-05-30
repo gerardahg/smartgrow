@@ -16,8 +16,17 @@ const GetTheme = ({ children }: Props) => {
   const { mode, theme, border } = useSelector(
     (state: RootState) => state.theme
   );
-  const baseTheme = createTheme({ palette: Palette(mode, theme) });
-  baseTheme.components = useMemo(() => styleOverrides(border), [border]);
+  const baseTheme = useMemo(
+    () =>
+      createTheme({
+        palette: Palette(mode, theme),
+        typography: {
+          fontFamily: `Circular, Verdana, Arial, sans-serif`,
+        },
+        components: styleOverrides(border),
+      }),
+    [mode, theme, border]
+  );
 
   return (
     <ThemeProvider theme={baseTheme}>

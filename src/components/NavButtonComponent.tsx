@@ -1,8 +1,6 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { signOut } from 'next-auth/react';
-import { useTranslations } from 'next-intl';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,18 +14,9 @@ interface Props {
 const NavButtonComponent = ({ icon, menuItems }: Props) => {
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const open = Boolean(anchor);
-
-  const handleLogout = () => {
-    signOut({ callbackUrl: '/' });
-  };
-
-  const t = useTranslations();
   return (
     <>
-      <IconButton
-        sx={{ color: 'white' }}
-        onClick={(e) => setAnchor(e.currentTarget)}
-      >
+      <IconButton onClick={(e) => setAnchor(e.currentTarget)}>
         {icon}
       </IconButton>
       {menuItems && (
@@ -37,11 +26,9 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
               <MenuItem
                 onClick={() => {
                   setAnchor(null);
-                  if (item.display == 'logout') handleLogout();
                 }}
               >
-                {item.display == 'logout' && t('logout')}
-                {item.display != 'logout' && item.display}
+                {item.display}
               </MenuItem>
             </Link>
           ))}

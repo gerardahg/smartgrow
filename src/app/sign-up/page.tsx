@@ -11,6 +11,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IconInput from '@/components/application-ui/forms/IconInputComponent';
 import Register from '@/components/application-ui/forms/RegisterComponent';
 import Container from '@mui/material/Container';
+import SmartGrowTitleComponent from '@/components/application-ui/general-text/SmartGrowTitleComponent';
 
 const mb = { marginBottom: 2 };
 
@@ -29,17 +30,7 @@ export default function Signup() {
         }}
       >
         <Link href="/">
-          <Typography
-            variant="h3"
-            sx={{
-              fontStyle: 'italic',
-              fontWeight: 'bold',
-              color: 'primary.main',
-            }}
-            gutterBottom
-          >
-            SmartGrow
-          </Typography>
+          <SmartGrowTitleComponent />
         </Link>
 
         <Card

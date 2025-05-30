@@ -120,10 +120,8 @@ export default function DevicesGrid() {
             alignItems: 'center',
           }}
         >
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {t('myDevices')}
-            </Typography>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Typography variant="h6">{t('myDevices')}</Typography>
             <Chip
               label={`${filteredDevices.length} ${t('of')} ${
                 devices.length
@@ -171,13 +169,6 @@ export default function DevicesGrid() {
               onChange={(e) => setSearchTerm(e.target.value)}
               size="small"
               fullWidth
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
             />
 
             <FormControl size="small" sx={{ minWidth: 150 }}>

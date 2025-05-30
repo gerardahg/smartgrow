@@ -13,6 +13,7 @@ import SignIn from '@/components/application-ui/forms/SignInButton';
 import ManualSignIn from '@/components/application-ui/forms/ManualSignInComponent';
 import Container from '@mui/material/Container';
 import RedirectAuthenticated from '@/components/application-ui/general-text/RedirectAuthenticated';
+import SmartGrowTitleComponent from '@/components/application-ui/general-text/SmartGrowTitleComponent';
 
 const mb = { marginBottom: 2 };
 
@@ -32,17 +33,7 @@ export default function Home() {
         }}
       >
         <Link href="/">
-          <Typography
-            variant="h3"
-            sx={{
-              fontStyle: 'italic',
-              fontWeight: 'bold',
-              color: 'primary.main',
-            }}
-            gutterBottom
-          >
-            SmartGrow
-          </Typography>
+          <SmartGrowTitleComponent />
         </Link>
 
         <Card

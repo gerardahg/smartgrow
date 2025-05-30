@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
+import { useTranslations } from 'next-intl';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -36,6 +38,7 @@ const sensors = [
 
 const LiveDataComponent = () => {
   const [currentSensor, setCurrentSensor] = useState(0);
+  const t = useTranslations();
 
   //Setinterval: ejecuta el código que contiene cada x segundos, en este caso 2 segundos
   useEffect(() => {
@@ -46,10 +49,37 @@ const LiveDataComponent = () => {
     return () => clearInterval(interval);
   }, []);
 
+  //Sensors tiene que estar dentro del componente debido a que tenemos que traducir los textos con el hook useTranslations
+  const sensors = [
+    {
+      name: t('temperature'),
+      value: '24°C',
+      icon: <Thermostat />,
+      color: '#ff5722',
+    },
+    {
+      name: t('humidity'),
+      value: t('high'),
+      icon: <Opacity />,
+      color: '#2196f3',
+    },
+    {
+      name: t('light'),
+      value: t('Bright'),
+      icon: <WbSunny />,
+      color: '#ffc107',
+    },
+    {
+      name: t('rain'),
+      value: t('Dry'),
+      icon: <CloudQueue />,
+      color: '#9c27b0',
+    },
+  ];
   return (
     <Paper elevation={1} sx={{ p: 4 }}>
       <Typography variant="h6" sx={{ mb: 3, fontWeight: 600 }}>
-        Live Sensor Data
+        {t('Live Sensor Data')}
       </Typography>
 
       <Grid container spacing={2}>

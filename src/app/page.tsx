@@ -92,10 +92,10 @@ export default function SmartGrowLanding() {
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" gutterBottom fontWeight={600}>
-            Powerful Features
+            {t('Powerful Features')}
           </Typography>
           <Typography variant="h6" sx={{ color: 'text.secondary' }}>
-            Everything you need to monitor and analyze your environment
+            {t('Everything you need to monitor and analyze your environment')}
           </Typography>
         </Box>
 
@@ -107,24 +107,23 @@ export default function SmartGrowLanding() {
         <Grid container spacing={6} alignItems="center" justifyContent="center">
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h3" sx={{ mb: 3, fontWeight: 600 }}>
-              Technical Excellence
+              {t('Technical Excellence')}
             </Typography>
             <Typography
               variant="body1"
               sx={{ mb: 4, color: 'text.secondary', lineHeight: 1.5 }}
             >
-              SmartGrow uses high-quality sensors and thoughtful design to give
-              you accurate, real-time information about your environment. It's
-              easy to use and helps you stay on top of changing conditions,
-              whether you're indoors or outdoors.
+              {t(
+                "SmartGrow uses high-quality sensors and thoughtful design to give you accurate, real-time information about your environment It's easy to use and helps you stay on top of changing conditions, whether you're indoors or outdoors"
+              )}
             </Typography>
 
             <List>
               {[
-                'Reliable environmental sensors',
-                'Instant audio alerts',
-                'Automatic data tracking',
-                'Easy-to-use online dashboard',
+                t('Reliable environmental sensors'),
+                t('Instant audio alerts'),
+                t('Automatic data tracking'),
+                t('Easy-to-use online dashboard'),
               ].map((spec, index) => (
                 <ListItem key={index}>
                   <ListItemIcon>
@@ -141,15 +140,17 @@ export default function SmartGrowLanding() {
       {/* Sección final */}
       <Paper sx={{ py: 8, mt: 8, borderRadius: 0 }}>
         <Container maxWidth="lg" sx={{ textAlign: 'center' }}>
-          <Typography variant="h3" sx={{ mb: 2, fontWeight: 600 }}>
-            Ready to Start Monitoring?
+          <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
+            {t('Ready to Start Monitoring?')}
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, color: 'text.secondary' }}>
-            Join the SmartGrow ecosystem and take control of your environment
+            {t(
+              'Join the SmartGrow ecosystem and take control of your environment'
+            )}
           </Typography>
           <Link href="/sign-in">
             <GradientButtonComponent
-              text="Get Started"
+              text={t('Get Started')}
               icon={<ArrowForward />}
             />
           </Link>

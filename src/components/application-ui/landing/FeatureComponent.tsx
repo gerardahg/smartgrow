@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import Notifications from '@mui/icons-material/Notifications';
 import Timeline from '@mui/icons-material/Timeline';
@@ -11,33 +12,39 @@ import CardContent from '@mui/material/CardContent';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-const features = [
-  {
-    title: 'Real-time Monitoring',
-    description:
-      'Continuous tracking of environmental conditions with instant updates',
-    icon: <Timeline fontSize="large" />,
-  },
-  {
-    title: 'Audio Alerts',
-    description:
-      'Smart speaker notifications when conditions require attention',
-    icon: <Notifications fontSize="large" />,
-  },
-  {
-    title: 'Data Storage',
-    description:
-      'All sensor data is automatically logged and stored for analysis',
-    icon: <Memory fontSize="large" />,
-  },
-  {
-    title: 'Dashboard View',
-    description: 'Beautiful, intuitive interface to visualize all your data',
-    icon: <Dashboard fontSize="large" />,
-  },
-];
-
 const FeatureComponent = () => {
+  const t = useTranslations();
+
+  const features = [
+    {
+      title: t('Real-time Monitoring'),
+      description: t(
+        'Continuous tracking of environmental conditions with instant updates'
+      ),
+      icon: <Timeline fontSize="large" />,
+    },
+    {
+      title: t('Audio Alerts'),
+      description: t(
+        'Smart speaker notifications when conditions require attention'
+      ),
+      icon: <Notifications fontSize="large" />,
+    },
+    {
+      title: t('Data Storage'),
+      description: t(
+        'All sensor data is automatically logged and stored for analysis'
+      ),
+      icon: <Memory fontSize="large" />,
+    },
+    {
+      title: t('Dashboard View'),
+      description: t(
+        'Beautiful, intuitive interface to visualize all your data'
+      ),
+      icon: <Dashboard fontSize="large" />,
+    },
+  ];
   return (
     <Grid container spacing={4}>
       {features.map((feature) => (

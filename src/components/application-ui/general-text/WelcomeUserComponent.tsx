@@ -9,7 +9,7 @@ const WelcomeUser = () => {
   const t = useTranslations();
   const { data } = useSession();
   return (
-    <Typography variant="h3" gutterBottom>
+    <Typography sx={{ fontSize: { xs: 40, sm: 48 } }} gutterBottom>
       {t('welcome')}, {data?.user?.name || 'User'}
     </Typography>
   );

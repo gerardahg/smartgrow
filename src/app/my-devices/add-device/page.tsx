@@ -29,12 +29,12 @@ const AddDevice = () => {
         <GradientHeader>
           <Typography
             variant="h2"
-            sx={{ fontSize: { md: 48, sm: 24, xs: 24 } }}
+            sx={{ fontSize: { xs: 36, md: 48 } }}
             gutterBottom
           >
             {t('addNewDevice')}
           </Typography>
-          <Typography variant="body1" sx={{ opacity: 0.9, fontSize: '1.1rem' }}>
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
             {t('configure')}
           </Typography>
         </GradientHeader>

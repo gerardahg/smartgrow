@@ -2,11 +2,13 @@
 
 import Chip from '@mui/material/Chip';
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 const ChipComponent = () => {
+  const t = useTranslations();
   return (
     <Chip
-      label="Innovative Monitoring Technology"
+      label={t('Innovative Monitoring Technology')}
       sx={({ palette }) => ({
         mb: 3,
         background: `linear-gradient(45deg, ${palette.primary.main}, ${palette.secondary.main})`,

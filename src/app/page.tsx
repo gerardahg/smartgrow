@@ -13,6 +13,7 @@ import {
   Stack,
 } from '@mui/material';
 import { CheckCircle, ArrowForward } from '@mui/icons-material';
+import { useTranslations } from 'next-intl';
 
 import TranslateComponent from '@/components/application-ui/forms/TranslateComponent';
 import ThemeButtonComponent from '@/components/application-ui/ThemeComponent/ThemeButtonComponent';
@@ -24,6 +25,7 @@ import GradientButtonComponent from '@/components/application-ui/landing/Gradien
 import SmartgrowLogoComponent from '@/components/SmartgrowLogoComponent';
 
 export default function SmartGrowLanding() {
+  const t = useTranslations();
   return (
     <Box>
       {/* Barra de herramientas principal */}
@@ -37,9 +39,9 @@ export default function SmartGrowLanding() {
             </Box>
 
             <Stack direction="row">
-              <TranslateComponent />
-
               <ThemeButtonComponent />
+
+              <TranslateComponent />
             </Stack>
           </Toolbar>
         </Container>
@@ -63,20 +65,19 @@ export default function SmartGrowLanding() {
               fontWeight={600}
               sx={{ fontSize: { xs: 32, md: 48 } }}
             >
-              Intelligent Environmental Monitoring
+              {t('Intelligent Environmental Monitoring')}
             </Typography>
             <Typography
               variant="h6"
               sx={{ mb: 4, color: 'text.secondary', lineHeight: 1.5 }}
             >
-              SmartGrow uses advanced sensor technology to monitor rain,
-              humidity, temperature, and light levels in real-time. Receive
-              instant audio alerts and explore trends over time with our
-              intuitive, user-friendly dashboard.
+              {t(
+                'SmartGrow uses advanced sensor technology to monitor rain, humidity, temperature, and light levels in real-time Receive instant audio alerts and explore trends over time with our intuitive, user-friendly dashboard'
+              )}
             </Typography>
             <Link href="/sign-in">
               <GradientButtonComponent
-                text="Get Started"
+                text={t('Get Started')}
                 icon={<ArrowForward />}
               />
             </Link>

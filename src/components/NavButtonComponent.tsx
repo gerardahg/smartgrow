@@ -1,7 +1,6 @@
 'use client';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { signOut } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
 
 import Menu from '@mui/material/Menu';
@@ -17,10 +16,6 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
   const [anchor, setAnchor] = useState<null | HTMLElement>(null);
   const open = Boolean(anchor);
 
-  const handleLogout = () => {
-    signOut({ callbackUrl: '/sign-in' });
-  };
-
   const t = useTranslations();
   return (
     <>
@@ -34,11 +29,9 @@ const NavButtonComponent = ({ icon, menuItems }: Props) => {
               <MenuItem
                 onClick={() => {
                   setAnchor(null);
-                  if (item.display == 'logout') handleLogout();
                 }}
               >
-                {item.display == 'logout' && t('logout')}
-                {item.display != 'logout' && item.display}
+                {item.display}
               </MenuItem>
             </Link>
           ))}

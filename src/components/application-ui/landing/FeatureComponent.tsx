@@ -59,7 +59,7 @@ const FeatureComponent = () => {
               </Typography>
               <Typography
                 variant="body2"
-                sx={{ color: 'grey.400', lineHeight: 1.5 }}
+                sx={{ color: 'text.secondary', lineHeight: 1.5 }}
               >
                 {feature.description}
               </Typography>

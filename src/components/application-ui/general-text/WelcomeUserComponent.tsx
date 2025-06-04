@@ -10,7 +10,7 @@ const WelcomeUser = () => {
   const { data } = useSession();
   return (
     <Typography sx={{ fontSize: { xs: 40, sm: 48 } }} gutterBottom>
-      {t('welcome')}, {data?.user?.name || 'User'}
+      {t('welcome')}, {data?.user?.name || ''}
     </Typography>
   );
 };

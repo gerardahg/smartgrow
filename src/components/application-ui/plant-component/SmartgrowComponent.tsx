@@ -18,6 +18,7 @@ import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
 
 import SettingsButton from './SettingsButton';
 import ReadingsComponent from './ReadingsComponent';
+import ChartComponent from './ChartComponent';
 
 interface Props {
   name: string;
@@ -103,7 +104,7 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
             sx={{
               position: 'absolute',
               right: 8,
-              top: 8,
+              top: 12,
             }}
           >
             <CloseIcon />
@@ -124,6 +125,8 @@ const SmartgrowComponent = ({ name, reference, onDeviceDelete }: Props) => {
         onNameUpdate={handleNameUpdate}
         onDeviceDelete={handleDeviceDelete}
       />
+
+      <ChartComponent reference={reference} />
 
       <Snackbar
         open={notification.open}

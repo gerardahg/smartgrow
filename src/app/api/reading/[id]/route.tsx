@@ -19,12 +19,6 @@ export async function GET(
       },
     });
 
-    if (!readings) {
-      return NextResponse.json(
-        { message: 'No Readings found' },
-        { status: 404 }
-      );
-    }
     return NextResponse.json(readings, { status: 200 });
   } catch (err) {
     const error =

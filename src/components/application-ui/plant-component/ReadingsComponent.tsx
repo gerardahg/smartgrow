@@ -72,7 +72,7 @@ const ReadingsComponent = ({ reference }: Props) => {
   }
 
   const temperature = (reading.temperature / 40) * 100;
-  const humidity = (reading.humidity / 1000) * 100;
+  const humidity = ((1000 - reading.humidity) / 1000) * 100;
   const light = (reading.light / 1000) * 100;
 
   return (

@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 
+import ImageComponent from './UI/ImageComponent';
+
 const DatabaseSection = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 6 }}>
@@ -33,11 +35,9 @@ const DatabaseSection = () => {
               >
                 Diagrama
               </Typography>
-              <Image
+              <ImageComponent
                 src="/images/presentation/diagram.png"
-                width={2000}
-                height={2000}
-                alt="Diagrama lógico"
+                alt="Diagrama lógico base datos"
               />
             </Paper>
           </Grid>
@@ -51,10 +51,8 @@ const DatabaseSection = () => {
               >
                 Modelo ORM
               </Typography>
-              <Image
+              <ImageComponent
                 src="/images/presentation/dbModel.png"
-                width={2000}
-                height={2000}
                 alt="Modelo Prisma base de datos"
               />
             </Paper>

@@ -19,6 +19,7 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import CodeIcon from '@mui/icons-material/Code';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
+import ImageComponent from './UI/ImageComponent';
 
 const architecture = [
   {
@@ -172,14 +173,12 @@ const StructureSection = () => {
         Estructura y Funcionamiento
       </Typography>
 
-      <Paper sx={{ p: 4, mb: 6 }}>
-        <Image
-          src="/images/presentation/structure.png"
-          alt="smartgrow estructura"
-          width={2000}
-          height={2000}
+      <Box sx={{ mb: 6 }}>
+        <ImageComponent
+          src={'/images/presentation/structure.png'}
+          alt={'structure'}
         />
-      </Paper>
+      </Box>
 
       <Paper elevation={1} sx={{ p: 2 }}>
         <Typography
@@ -197,7 +196,18 @@ const StructureSection = () => {
         <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
           {architecture.map((layer, index) => (
             <Grid size={{ xs: 12, md: 6 }} key={index}>
-              <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
+              <Paper
+                elevation={2}
+                sx={({ palette }) => ({
+                  p: 3,
+                  height: '100%',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    transform: 'translateY(-8px)',
+                    boxShadow: `0 0 16px ${palette.primary.main}`,
+                  },
+                })}
+              >
                 <Typography
                   variant="h6"
                   component="h4"

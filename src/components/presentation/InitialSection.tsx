@@ -9,6 +9,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Link from 'next/link';
+import ThemeButtonComponent from '../application-ui/ThemeComponent/ThemeButtonComponent';
 
 const pros = [
   {
@@ -30,6 +31,7 @@ const InitialSection = () => {
         minHeight: '100dvh',
         display: 'flex',
         alignItems: 'center',
+        position: 'relative',
       }}
     >
       <Container maxWidth="lg">
@@ -65,7 +67,7 @@ const InitialSection = () => {
           <Grid size={{ xs: 12, md: 6 }}>
             <Paper elevation={1} sx={{ p: 4 }}>
               <Typography variant="h5" sx={{ textAlign: 'center', mb: 3 }}>
-                Equipo Programador
+                Equipo
               </Typography>
               <Grid container spacing={2}>
                 {pros.map((item, index) => (

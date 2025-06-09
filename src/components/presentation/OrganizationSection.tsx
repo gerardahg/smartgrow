@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
+import ImageComponent from './UI/ImageComponent';
 
 const OrganizationSection = () => {
   return (
@@ -31,11 +32,9 @@ const OrganizationSection = () => {
           >
             Diagrama de Gantt
           </Typography>
-          <Image
+          <ImageComponent
             src="/images/presentation/gantt.png"
-            width={2000}
-            height={2000}
-            alt="Diagrama de Gantt"
+            alt="diagrama de gantt"
           />
         </Paper>
 
@@ -70,10 +69,8 @@ const OrganizationSection = () => {
               </Typography>
             </Grid>
             <Grid size={{ xs: 12, md: 6 }}>
-              <Image
+              <ImageComponent
                 src="/images/presentation/spiral.jpg"
-                width={2000}
-                height={2000}
                 alt="Metodo en espiral"
               />
             </Grid>

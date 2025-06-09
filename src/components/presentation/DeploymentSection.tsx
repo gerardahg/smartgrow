@@ -64,10 +64,11 @@ const DeploymentSection = () => {
         sx={{
           mb: 6,
           textAlign: 'center',
-          fontWeight: 700,
+          fontWeight: 550,
+          fontSize: { xs: '2rem', sm: '3.5rem' },
         }}
       >
-        Dónde Está Alojado
+        Despliegue
       </Typography>
 
       <Paper elevation={1} sx={{ p: 4, mb: 6 }}>
@@ -83,13 +84,14 @@ const DeploymentSection = () => {
             <Grid size={{ xs: 12, md: 6 }} key={index}>
               <Card
                 elevation={2}
-                sx={{
+                sx={({ palette }) => ({
                   height: '100%',
                   transition: 'all 0.3s ease',
                   '&:hover': {
+                    boxShadow: `0 0 16px ${palette.primary.main}`,
                     transform: 'translateY(-8px)',
                   },
-                }}
+                })}
               >
                 <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>

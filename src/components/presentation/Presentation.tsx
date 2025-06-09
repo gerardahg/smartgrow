@@ -11,6 +11,7 @@ import ImprovementsSection from './ImprovementSection';
 import DeploymentSection from './DeploymentSection';
 import OrganizationSection from './OrganizationSection';
 import DatabaseSection from './DatabaseSection';
+import ImagesSection from './ImagesSection';
 
 const Presentation = () => {
   return (
@@ -23,6 +24,7 @@ const Presentation = () => {
       <TestingSection />
       <ImprovementsSection />
       <DeploymentSection />
+      <ImagesSection />
     </Box>
   );
 };

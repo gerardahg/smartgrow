@@ -34,8 +34,8 @@ const ImprovementsSection = () => {
       icon: <CloudSync color="primary" />,
     },
     {
-      title: 'Analytics Avanzados',
-      description: 'Reportes detallados',
+      title: 'Gráficos Avanzados',
+      description: 'Poder analizar a mas detalle el histórico de la planta',
       icon: <TrendingUp color="primary" />,
     },
     {

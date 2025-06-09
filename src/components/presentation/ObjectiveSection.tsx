@@ -1,8 +1,7 @@
-import Image from 'next/image';
-
 import React from 'react';
 import { Box, Container, Typography, Paper, Grid, Stack } from '@mui/material';
 import { TrendingUp, Sensors, CloudDone, Timeline } from '@mui/icons-material';
+import ImageComponent from './UI/ImageComponent';
 
 const ObjectiveSection = () => {
   const objectives = [
@@ -69,24 +68,10 @@ const ObjectiveSection = () => {
             </Typography>
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Paper
-              elevation={2}
-              sx={({ palette }) => ({
-                p: 2,
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-8px)',
-                  boxShadow: `0 0 16px ${palette.primary.main}`,
-                },
-              })}
-            >
-              <Image
-                src="/images/presentation/arduino.jpg"
-                height={1000}
-                width={1000}
-                alt="arduino y maceta"
-              />
-            </Paper>
+            <ImageComponent
+              src="/images/presentation/arduino.jpg"
+              alt="arduino"
+            />
           </Grid>
         </Grid>
       </Paper>

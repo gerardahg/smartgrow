@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import React from 'react';
 import { Box, Container, Typography, Paper, Grid, Stack } from '@mui/material';
 import { TrendingUp, Sensors, CloudDone, Timeline } from '@mui/icons-material';

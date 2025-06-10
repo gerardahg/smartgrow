@@ -18,6 +18,8 @@ import MemoryIcon from '@mui/icons-material/Memory';
 import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
 import CodeIcon from '@mui/icons-material/Code';
 import MoveDownIcon from '@mui/icons-material/MoveDown';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+
 import ImageComponent from './UI/ImageComponent';
 
 const architecture = [
@@ -105,6 +107,18 @@ const StructureSection = () => {
         'DFPlayer Mini (reproductor de audio)',
       ],
       link: 'https://store.arduino.cc/products/uno-r4-wifi',
+    },
+    {
+      category: 'Librerias Arduino',
+      icon: <LibraryBooksIcon color="primary" />,
+      items: [
+        'DHT.h',
+        'SoftwareSerial.h',
+        'DFRobotDFPlayerMini.h',
+        'WiFiS3.h',
+        'WiFiSSLClient.h',
+      ],
+      link: 'https://docs.arduino.cc/libraries/dht-sensor-library/',
     },
     {
       category: 'Internacionalización',
